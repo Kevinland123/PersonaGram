@@ -1,1 +1,6 @@
+# For Development:
 source env/bin/activate
+
+# Run on Local Machine:
+gunicorn -b localhost:8000 -w 2 -D ala:app
+pkill -f gunicorn

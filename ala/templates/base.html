@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>WebApp</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    </head>
+
+    <div class="container">
+        <!-- NavBar -->
+        <header>
+            <div class="headerLeft">
+                <a href="/">
+                    <!-- <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 15px; height: 15px"> -->
+                </a> |
+                <a class="titleText">ALA 223</a>
+            </div>
+            
+            <div class="headerRight">
+                <a href="/explore/">explore</a> |
+                <a href="/accounts/login/">login</a>
+            </div>
+        </header>
+
+        <!-- This clears the weird styling I had -->
+        <div style="clear: both;"></div>
+        <hr />
+
+        {% block content %}{% endblock%}
+    </div>
+
+</html>
