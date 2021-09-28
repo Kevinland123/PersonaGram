@@ -1,1 +1,1 @@
-web: gunicorn; gunicorn app:app
+web: gunicorn -b localhost:8000 -w 2 -D ala:app; gunicorn app:app
