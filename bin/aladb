@@ -1,0 +1,64 @@
+#!/bin/bash
+# insta485db
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+
+# Sanity check command line options
+usage() {
+  echo "Usage: $0 (create|destroy|reset|dump)"
+}
+
+if [ $# -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+# Parse argument.  $1 is the first argument
+case $1 in
+  "create")
+    # test ! -e var/ala.sqlite3 && echo no
+    if [ -e var/ala.sqlite3 ]; then
+        echo "Database already exists."
+    else
+        echo "Database does not exist, creating database"
+        set -x
+        mkdir -p var/uploads
+        sqlite3 var/ala.sqlite3 < sql/schema.sql
+        sqlite3 var/ala.sqlite3 < sql/data.sql
+        cp sql/uploads/* var/uploads/
+    fi
+    ;;
+
+  "destroy")
+    echo "database destroyed"
+    set -x
+    rm -rf var/ala.sqlite3 var/uploads
+    ;;
+
+  "reset")
+    echo "resetting database"
+    set -x
+    rm -rf var/ala.sqlite3 var/uploads
+    mkdir -p var/uploads
+    sqlite3 var/ala.sqlite3 < sql/schema.sql
+    sqlite3 var/ala.sqlite3 < sql/data.sql
+    cp sql/uploads/* var/uploads/
+    ;;
+
+  "dump")
+    echo "dump:"
+    set -x
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM comments'
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM following'
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM likes'
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM posts'
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM users'
+    ;;
+
+  *)
+    usage
+    exit 1
+    ;;
+esac

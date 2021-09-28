@@ -1,0 +1,16 @@
+#!/bin/bash
+# insta485run
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+
+# Create
+if [ ! -e var/ala.sqlite3 ]; then
+  ./bin/aladb create
+fi
+
+set -x
+export FLASK_ENV=development
+export FLASK_APP=ala
+flask run --host 0.0.0.0 --port 8000
