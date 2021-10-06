@@ -1,14 +1,15 @@
 <!DOCTYPE html>
     <html lang="en">
     <head>
-        <title>WebApp</title>
+        <title>PersonaGram</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
     </head>
 
     <div class="container">
         <div class="bigBlock">
             <!-- NavBar -->
-            <div>
+            <div class="header">
                 <div class="headerLeft">
                     <a href="/">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 465px; height: 80px">
@@ -16,8 +17,9 @@
                 </div>
                 
                 <div class="headerRight">
-                    <a href="/explore/">explore</a> |
-                    <a href="/accounts/login/">login</a>
+                    <a href="/quiz/">Quiz</a>
+                    <a href="/about/">About</a>
+                    <a href="/faq/">FAQ</a>
                 </div>
             </div>
 
@@ -26,10 +28,14 @@
 
             {% block content %}{% endblock%}
         </div>
+    </div>
 
-        <div class="footer">
-            <p>Insert logo</p>
-            <p>Insert email</p>
+    <div class = "footerBG">
+        <div class = "footerBox">
+            <div class="footer">
+                <img src="{{ url_for('static', filename='images/footerLogo.png') }}" alt="logo" style="width: 465px; height: 87px" class="footerElems">
+                <p class="footerElems">emailwecreate@gmail.com</p>
+            </div>
         </div>
     </div>
 </html>
