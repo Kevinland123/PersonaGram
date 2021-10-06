@@ -6,26 +6,30 @@
     </head>
 
     <div class="container">
-        <!-- NavBar -->
-        <header>
-            <div class="headerLeft">
-                <a href="/">
-                    <!-- <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 15px; height: 15px"> -->
-                </a> |
-                <a class="titleText">ALA 223</a>
+        <div class="bigBlock">
+            <!-- NavBar -->
+            <div>
+                <div class="headerLeft">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 465px; height: 80px">
+                    </a>
+                </div>
+                
+                <div class="headerRight">
+                    <a href="/explore/">explore</a> |
+                    <a href="/accounts/login/">login</a>
+                </div>
             </div>
-            
-            <div class="headerRight">
-                <a href="/explore/">explore</a> |
-                <a href="/accounts/login/">login</a>
-            </div>
-        </header>
 
-        <!-- This clears the weird styling I had -->
-        <div style="clear: both;"></div>
-        <hr />
+            <!-- This clears the weird styling I had -->
+            <div style="clear: both;"></div>
 
-        {% block content %}{% endblock%}
+            {% block content %}{% endblock%}
+        </div>
+
+        <div class="footer">
+            <p>Insert logo</p>
+            <p>Insert email</p>
+        </div>
     </div>
-
 </html>
