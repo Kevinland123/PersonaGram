@@ -34,7 +34,7 @@ def show_quiz_start():
     return render_template("quiz_start.html", **context)
 
 @ala.app.route('/quiz/<question>')
-def show_quiz_start():
+def show_quiz():
     """Display / route."""
     context = {}
     return render_template("quiz_start.html", **context)

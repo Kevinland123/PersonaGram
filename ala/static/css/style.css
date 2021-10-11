@@ -45,22 +45,44 @@
 
 .footer {
     display: flex;
-    /* align-items: center; */
     justify-content: flex-start;
     align-items: flex-end;
 
     padding-left: 2em;
     padding-right: 2em;
-
     padding-top: 4em;
     padding-bottom: 4em;
 }
 
 .footerElems {
     margin-right: 6em;
-    font-size: 26px;
+    font-size: 20px;
 
     color: #FFFBF0;
+}
+
+/* FAQ */
+.faq {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4em;
+}
+
+.faqTitle {
+    font-size: 90px;
+    margin: 0.5em 0em 0.5em 0em;
+}
+
+.faqTitle p {
+    margin: 0;
+}
+
+.faqContent {
+    font-size: 24px;
+}
+
+.faqContent p {
+    margin-bottom: 1em;
 }
 
 a {
