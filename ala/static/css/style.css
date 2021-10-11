@@ -8,6 +8,10 @@
     margin-right: auto;
 }
 
+.body {
+    min-height: 63vh;
+}
+
 /* NavBar */
 .header {
     display: flex;
