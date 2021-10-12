@@ -1,42 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="frameBG">
-  <div class="frameBox">
-    <div class="frame_header">
-      <h1>2 lines text max of tag line here</h1>
-      <img src="{{ url_for('static', filename='images/Group.png') }}" alt="box"><br><br>
-      <div class="quiz_button">
-        <a class="quiz_buttona" href="/quiz/"> Take Quiz </a>
-      </div>
+    <div>
+        <div class="frame_text">
+            <p>2 lines text max of tag line here</p>
+        </div>
+
+        <div class="frame_image">
+            <img src="{{ url_for('static', filename='images/box_guy.png') }}" alt="box" />
+        </div>
+        
+        <a href="/quiz/">
+            <div class="quiz_button">
+                Take Quiz
+            </div>
+        </a>
     </div>
-  </div>
-</div>
-<div class="home">
-<p class="title"> How it works </p>
-  <div class="everythingOnOneLine">
-    <div class="first">
-      <p class="numberElems"> 1 <br> text for first point </p>
-      <img src="{{ url_for('static', filename='images/home1.png') }}" alt="box">
-    </div>
-  </div>
-  <div class="everythingOnOneLine">
-    <div class="second">
-      <p class="numberElems2"> 2 <br> text for second point </p>
-      <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box"><br>
-    </div>
-  </div>
-  <div class="everythingOnOneLine">
-    <div class="third">
-      <p class="numberElems"> 3 <br> text for third point </p>
-      <img src="{{ url_for('static', filename='images/home3.png') }}" alt="box"><br>
-    </div>
-  </div>
 </div>
 
-<div class="quiz_button2">
-  <a class="quiz_button2a" href="/quiz/"> Take Quiz </a>
+<div class="home">
+    <h3 class="title"> How it works </h3>
+    <div class="everythingOnOneLine">
+        <div class="first">
+          <p class="numberElems"> 1 <br> text for first point </p>
+          <img src="{{ url_for('static', filename='images/home1.png') }}" alt="box">
+        </div>
+    </div>
+    <div class="everythingOnOneLine">
+        <div class="second">
+            <p class="numberElems2"> 2 <br> text for second point </p>
+            <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box"><br>
+        </div>
+    </div>
+    <div class="everythingOnOneLine">
+        <div class="third">
+            <p class="numberElems"> 3 <br> text for third point </p>
+            <img src="{{ url_for('static', filename='images/home3.png') }}" alt="box"><br>
+        </div>
+    </div>
+
+    <div class="quiz_button2">
+        <a class="quiz_button2a" href="/quiz/"> Take Quiz </a>
+    </div>
 </div>
-<br>
 
 
 {% endblock %}
