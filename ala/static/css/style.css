@@ -34,7 +34,43 @@
     display: inline-block;
     margin-right: 1em;
 
+    font-size: 34px;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+    padding: 0 1em 0 1em
+}
+
+.dropdown p {
+    font-size: 34px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    color: #000000;
+    padding: 0.25em;
+    text-decoration: none;
     font-size: 28px;
+    margin: 0;
+}
+
+.dropdown-content a:hover {
+    color: #FFFFFF;
+    background-color: #00A4BD;
 }
 
 /* Footer */
@@ -175,14 +211,6 @@ a {
     font-size: 70px;
     text-align: center;
 }
-/* 
-everythingOnOneLine {
-    white-space: nowrap;
-}
-
-everythingOnOneLine * {
-   display: inline-block;
-} */
 
 .numberElems {
     font-size: 30px;
@@ -196,21 +224,21 @@ everythingOnOneLine * {
     margin-right: 400px;
 }
 
-  .first {
+.first {
     text-align: left;
     margin-left: 100px;
-  }
+}
 
-  .second {
+.second {
     text-align: right;
     margin-right: 100px;
-  }
+}
 
-  .third {
+.third {
     text-align: left;
     margin-left: 100px;
-  }
+}
 
-  .info_form {
+.info_form {
     text-align: center;
-  }
+}

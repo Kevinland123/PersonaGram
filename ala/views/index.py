@@ -1,8 +1,5 @@
 """
 Insta485 index (main) view.
-
-URLs include:
-/
 """
 import flask
 from flask import render_template
@@ -26,6 +23,12 @@ def show_faq():
     """Display / route."""
     context = {}
     return render_template("faq.html", **context)
+
+@ala.app.route('/contact/')
+def contact():
+    """Contact page."""
+    context = {}
+    return render_template("contact.html", **context)
 
 @ala.app.route('/quiz/')
 def show_quiz_start():
