@@ -140,16 +140,17 @@ a {
     background-color: #6CCDEA;
     border-radius: 75px;
 
-    min-height: 900px;
+    max-width: 900px;
     padding: 0em 0em 4em 0em;
-    margin-bottom: 4em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .frame_text{
     padding-left: 2.5em;
     padding-right: 2.5em;
 
-    font-size: 90px;
+    font-size: 70px;
     text-align: center;
     color: white;
 }
@@ -210,7 +211,7 @@ a {
 
 .home h3 {
     color: black;
-    font-size: 70px;
+    font-size: 60px;
     text-align: center;
 }
 
