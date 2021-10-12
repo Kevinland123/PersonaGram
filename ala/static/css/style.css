@@ -93,3 +93,105 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.frameBG{
+    display: block;
+    background-color: #6CCDEA;
+
+  }
+
+  .frameBox{
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 900px;
+  }
+
+  .frame_header{
+    font-size: 50px;
+    color: white;
+  }
+
+  .quiz_button{
+    color: white;
+    border: solid;
+    border-radius: 10px;
+    width: 15%;
+    margin-left: 45%;
+    font-size: 30px;
+  }
+
+
+
+  .quiz_buttona {
+    text-decoration: none;
+    color: white;
+  }
+
+
+
+  .quiz_button2{
+    color: blue;
+    border: solid;
+    border-radius: 10px;
+    width: 15%;
+    margin-left: 45%;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .quiz_button2a {
+      text-align: center;
+      color: blue;
+  }
+
+  .home{
+    display:block;
+    color: black;
+    margin: 25px;
+    font-size: 70px;
+
+  }
+
+  everythingOnOneLine {
+   white-space: nowrap;
+  }
+
+  everythingOnOneLine * {
+   display: inline-block;
+  }
+
+  .numberElems {
+      font-size: 30px;
+      color: #1562D1;
+      margin-left: 350px;
+  }
+
+  .numberElems2{
+    font-size: 30px;
+    color: #1562D1;
+    margin-right: 400px;
+  }
+
+  .title{
+    text-align: center;
+    margin: 25px;
+    font-size: 70px;
+
+  }
+
+  .first {
+    text-align: left;
+    margin-left: 100px;
+  }
+
+  .second {
+    text-align: right;
+    margin-right: 100px;
+  }
+
+  .third {
+    text-align: left;
+    margin-left: 100px;
+  }
