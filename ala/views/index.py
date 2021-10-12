@@ -38,3 +38,9 @@ def show_quiz():
     """Display / route."""
     context = {}
     return render_template("quiz_start.html", **context)
+
+@ala.app.route('/information/')
+def show_personal_info():
+    """Display / route."""
+    context = {}
+    return render_template("personal_info.html", **context)

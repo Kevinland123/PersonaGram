@@ -134,7 +134,7 @@ a {
   .quiz_button2{
     color: blue;
     border: solid;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 15%;
     margin-left: 45%;
     font-size: 30px;
@@ -194,4 +194,8 @@ a {
   .third {
     text-align: left;
     margin-left: 100px;
+  }
+
+  .info_form {
+    text-align: center;
   }
