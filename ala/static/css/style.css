@@ -1,5 +1,11 @@
+@font-face{
+    font-family: Nimbus;
+    src: url('NimbusSans-Light.ttf');
+}
+
 .container {
     background-color: #FEFBF1;
+    font-family: Nimbus;
 }
 
 .bigBlock {
@@ -52,6 +58,7 @@
     position: absolute;
     width: 100%;
     overflow: auto;
+    padding: 0.2em;
 
     background-color: #FEFBF1;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
@@ -112,8 +119,11 @@
 }
 
 .faqTitle {
-    font-size: 90px;
-    margin: 0.5em 0em 0.5em 0em;
+    font-size: 70px;
+    margin-bottom: 0.5em;
+
+    display: flex;
+    justify-content: center;
 }
 
 .faqTitle p {
@@ -122,6 +132,7 @@
 
 .faqContent {
     font-size: 24px;
+    max-width: 80vh;
 }
 
 .faqContent p {
@@ -205,7 +216,7 @@ a {
 
 .home{
     display: block;
-    margin: 25px;
+    margin: 25px 25px 0px 25px;
     padding-bottom: 2em;
 }
 
@@ -215,10 +226,38 @@ a {
     text-align: center;
 }
 
-.numberElems {
-    font-size: 30px;
+.numElemLeft {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 4em;
+}
+
+.numElemRight {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4em;
+}
+
+.numElemTextLeft {
+    flex-direction: column;
+    max-width: 600px;
+    margin-right: 4em;
+}
+
+.numElemTextRight {
+    flex-direction: column;
+    max-width: 600px;
+    margin-left: 4em;
+}
+
+.numElemBold {
     color: #1562D1;
-    margin-left: 350px;
+    font-size: 70px;
+}
+
+.numElemSmall {
+    font-size: 28px;
+    color: black;
 }
 
 .numberElems2{
@@ -227,19 +266,10 @@ a {
     margin-right: 400px;
 }
 
-.first {
-    text-align: left;
-    margin-left: 100px;
-}
-
-.second {
-    text-align: right;
-    margin-right: 100px;
-}
-
-.third {
-    text-align: left;
-    margin-left: 100px;
+/* Quiz Start */
+.quizIntroTitle {
+    text-align: center;
+    font-size: 40px;
 }
 
 .info_form {
