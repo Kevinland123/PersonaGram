@@ -273,5 +273,50 @@ a {
 }
 
 .info_form {
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
+}
+
+.contact_form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact_submit {
+  width: 15%;
+  background-color: #1562D1;
+  color: white;
+  margin-top: 10px;
+}
+
+.contact_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+input {
+  margin-bottom: 8px;
+}
+
+.contact{
+  text-align: center;
+  font-family: 'ABeeZee';
+}
+.contact_bold{
+  font-size: 48px;
+}
+
+.contact_text{
+  font-size: 24px;
 }
