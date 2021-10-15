@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="frameBG">
-    <div>
-        <div class="frame_text">
-            <p>2 lines text max of tag line here</p>
-        </div>
-
-        <div class="frame_image">
-            <img src="{{ url_for('static', filename='images/box_guy.png') }}" width="300" alt="box" />
-        </div>
-        
-        <a href="/quiz/">
-            <div class="quiz_button">
-                Take Quiz
-            </div>
-        </a>
+    <div class="frame_text">
+        2 lines text max of tag line here
     </div>
+    <div class="frame_image">
+        <img src="{{ url_for('static', filename='images/box_guy.png') }}" width="300" alt="box" />
+    </div>
+    <a href="/quiz/">
+        <div class="quiz_button">
+            Take Quiz
+        </div>
+    </a>
 </div>
 
 <div class="home">
