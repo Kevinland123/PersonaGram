@@ -41,8 +41,6 @@ def show_faq():
 @ala.app.route('/contact/', methods=['GET', 'POST'])
 def contact():
     """Contact page."""
-    context = {}
-
     if flask.request.method == 'POST':
         contact_name = flask.request.form['name']
         contact_email = flask.request.form['email']
@@ -53,13 +51,13 @@ def contact():
                       recipients=[os.getenv('EMAIL_USERNAME')])
         msg.body = """
         From: %s <%s> <%s>
-        
+
         %s
         """ % (contact_name, contact_phone, contact_email, contact_message)
         mail.send(msg)
-        return 'Form posted.'
+        return render_template("contact.html", success=True)
 
-    return render_template("contact.html", **context)
+    return render_template("contact.html")
 
 
 @ala.app.route('/quiz/', methods=['GET'])

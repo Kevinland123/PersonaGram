@@ -7,14 +7,20 @@
   <p class="contact_text"> For any business inquiries or sponsorship opportunities, please contact us at
                            info.personagram@gmail.com </p>
   <p class="contact_bold"> Send a Message! </p>
-  <p class="contact_text"> Need to get in touch with our for any technical difficulties or have any comments 
-                           and questions? Send us an email! </p>
-  <form class="contact_input" action="" method="post">
-    <input type="text" name="name" placeholder="Name" required/>
-    <input type="email" name="email" placeholder="Email" required/>
-    <input type="tel" name="phone" placeholder ="Phone Number" required/>
-    <textarea rows="5" cols="60" name="message" placeholder="Enter message" ></textarea>
-    <input class="contact_submit" type="submit" value="Send"/> </div>
-  </form>
+  {% if success %}
+    <p class="contact_text">Thank you for your message. We'll get back to you shortly.</p>
+  {% else %}
+    <p class="contact_text">
+      Need to get in touch with our for any technical difficulties or have any comments 
+      and questions? Send us an email!
+    </p>
+    <form class="contact_input" action="" method="post">
+      <input type="text" name="name" placeholder="Name" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="tel" name="phone" placeholder ="Phone Number" required/>
+      <textarea rows="5" cols="60" name="message" placeholder="Enter message" ></textarea>
+      <input class="contact_submit" type="submit" value="Send"/> </div>
+    </form>
+  {% endif %}
 </div>
 {% endblock %}
