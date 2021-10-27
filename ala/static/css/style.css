@@ -285,6 +285,7 @@ a {
   text-align: center;
 }
 
+/* Contact Page */
 .contact_form {
   margin-left: auto;
   margin-right: auto;
@@ -311,15 +312,30 @@ input {
   margin-bottom: 8px;
 }
 
-.contact{
+.contact {
   text-align: center;
   font-family: 'ABeeZee';
 }
-.contact_bold{
+.contact_bold {
   font-size: 48px;
   margin-bottom: 0.5em;
 }
 
-.contact_text{
+.contact_text {
   font-size: 24px;
+}
+
+/* About Page */
+.about {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about_big {
+  font-size: 48px;
 }

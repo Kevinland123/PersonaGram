@@ -1,4 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-ABOUT
+<div class="about">
+  <!-- PersonaGram's Goal -->
+  <p class="about_big">PersonaGram's Goal</p>
+  <p>We’ve created this e-commerce business as a way to connect University of Michigan students, 
+    especially after a year of quarantine. By definition, Persona is “the aspect of someone’s 
+    character that is presented to or perceived by others.” We’ve taken this definition to correspond 
+    with our personality quiz component and incorporated the candy-gram aspect, thus our business name “PersonaGram”!
+  </p>
+  <!-- Behind PersonaGram -->
+  <p class="about_big">Behind PersonaGram</p>
+  <p>PersonaGram was formulated from an entrepreneurship class (Psych 223: Entrepreneurial Creativity) at the University of Michigan by 4 students!</p>
+  <!-- Co-Founders -->
+  <p class="about_big">Co-Founders</p>
+  <div>
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+  </div>
+  <div>
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+  </div>
+  <!-- Sponsors -->
+  <p class="about_big">Sponsors</p>
+  <div>
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+  </div>
+  <div>
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+    <img src="{{ url_for('static', filename='images/home2.png') }}" alt="box" width="200" />
+  </div>
+</div>
 {% endblock %}

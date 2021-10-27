@@ -5,6 +5,7 @@ import flask
 import os
 from flask import render_template
 import ala
+import stripe
 from flask_mail import Message, Mail
 
 
@@ -15,6 +16,14 @@ ala.app.config["MAIL_USE_SSL"] = True
 ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
 ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
 mail.init_app(ala.app)
+
+
+# stripe_keys = {
+#     "secret_key": os.environ["STRIPE_SECRET_KEY"],
+#     "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+# }
+
+# stripe.api_key = stripe_keys["secret_key"]
 
 
 @ala.app.route('/', methods=['GET'])
@@ -67,15 +76,21 @@ def show_quiz_start():
     return render_template("quiz_start.html", **context)
 
 
-@ala.app.route('/quiz/<question>', methods=['GET'])
+@ala.app.route('/quiz/info/', methods=['GET'])
+def show_personal_info():
+    """Display / route."""
+    context = {}
+    return render_template("quiz_personal_info.html", **context)
+
+
+@ala.app.route('/quiz/<question>/', methods=['GET'])
 def show_quiz():
     """Display / route."""
     context = {}
     return render_template("quiz_start.html", **context)
 
 
-@ala.app.route('/information/', methods=['GET'])
-def show_personal_info():
-    """Display / route."""
-    context = {}
-    return render_template("personal_info.html", **context)
+def show_quiz_success():
+    """Display / route"""
+
+    return render_template("quiz_success.html")
