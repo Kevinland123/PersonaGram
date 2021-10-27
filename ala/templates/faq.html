@@ -7,15 +7,15 @@
             <p>FAQ</p>
         </div>
         <div class="faqContent">
-            <div>
-                <p><b>Q: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-                <p><b>A: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-                <p><b>Q: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-                <p><b>A: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-                <p><b>Q: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-                <p><b>A: </b>5 lines of text max... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
+            {% for faq in faqs %}
+            <div class="faqSet">
+                <p class="faqQuestion"><b>Q: </b>{{faq[0]}}</p>
+                <p class="faqAnswer"><b>A: </b>{{faq[1]}}</p>
             </div>
+            {% endfor %}
         </div>
+
+        
     </div>
 </div>
 <!-- </div> -->

@@ -43,7 +43,31 @@ def show_about():
 @ala.app.route('/faq/', methods=['GET'])
 def show_faq():
     """Display / route."""
-    context = {}
+    questions = [
+        ['What’s inside each box?',                      '''It can contain anything from snacks to trinkets to discount codes; anything
+                                                            that we think your friend might like! We will arrange the box just like we
+                                                            would for our own friends.'''], 
+        ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the recipient depending on the location.
+                                                            Otherwise, we will ship the box.'''], 
+        ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''], 
+        ['How affordable are the boxes?',                '''The boxes are very affordable! You will spend $10 on a gift box
+                                                            which is worth a lot more!'''], 
+        ['Is shipping included?',                        '''Shipping is included in the total price!'''], 
+        ['Will my friend know who it’s from?',           '''The gift box will be completely anonymous, although you have
+                                                            the option to include a note'''], 
+        ['I didn’t receive any confirmation email. What do I do?',
+                                                         '''Check your spam folder! If you still don’t have any communication
+                                                            from us, be sure to reach out to us at info.personagram@gmail.com.'''],
+        ['Can I refund/exchange my box if I’m not satisfied?',
+                                                         '''Unfortunately, we cannot offer any refunds or exchanges since our boxes are personalized.'''],
+        ['Can I buy a box for myself?',                  '''Of course! Regardless of who the box is intended for, we will only
+                                                            look at the answers to the quiz questions to make sure the box is personalized.'''],
+        ['What type of payment does PersonaGram Accept?','''At PersonaGram, we make it easy for you to process your payment.
+                                                            We’ve integrated Stripe within our payment, allowing you to
+                                                            securely process any payments using VISA, VISA DEBIT,
+                                                            MASTERCARD, DISCOVER, and AMERICAN EXPRESS.''']
+    ]
+    context = {'faqs': questions}
     return render_template("faq.html", **context)
 
 

@@ -131,12 +131,23 @@
 }
 
 .faqContent {
-    font-size: 24px;
+    font-size: 20px;
     max-width: 80vh;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.faqContent p {
+.faqSet {
     margin-bottom: 1em;
+}
+
+.faqQuestion {
+    margin: 0;
+}
+
+.faqAnswer {
+    margin: 0.5em 0em 0em 1em;
 }
 
 a {
@@ -161,9 +172,19 @@ a {
 .frame_text{
     padding-left: 1em;
     padding-right: 1em;
-    margin: 0.5em 0 0.5em 0;
+    margin: 0.5em 0 0 0;
 
     font-size: 65px;
+    text-align: center;
+    color: white;
+}
+
+.frame_small{
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 1em 0 1.5em 0;
+
+    font-size: 28px;
     text-align: center;
     color: white;
 }
@@ -334,8 +355,12 @@ input {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+
+  font-size: 20px;
 }
 
 .about_big {
   font-size: 48px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 }
