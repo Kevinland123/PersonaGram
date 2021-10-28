@@ -46,15 +46,15 @@ def show_faq():
     questions = [
         ['What’s inside each box?',                      '''It can contain anything from snacks to trinkets to discount codes; anything
                                                             that we think your friend might like! We will arrange the box just like we
-                                                            would for our own friends.'''], 
+                                                            would for our own friends.'''],
         ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the recipient depending on the location.
-                                                            Otherwise, we will ship the box.'''], 
-        ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''], 
+                                                            Otherwise, we will ship the box.'''],
+        ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''],
         ['How affordable are the boxes?',                '''The boxes are very affordable! You will spend $10 on a gift box
-                                                            which is worth a lot more!'''], 
-        ['Is shipping included?',                        '''Shipping is included in the total price!'''], 
+                                                            which is worth a lot more!'''],
+        ['Is shipping included?',                        '''Shipping is included in the total price!'''],
         ['Will my friend know who it’s from?',           '''The gift box will be completely anonymous, although you have
-                                                            the option to include a note'''], 
+                                                            the option to include a note'''],
         ['I didn’t receive any confirmation email. What do I do?',
                                                          '''Check your spam folder! If you still don’t have any communication
                                                             from us, be sure to reach out to us at info.personagram@gmail.com.'''],
@@ -79,7 +79,7 @@ def contact():
         contact_email = flask.request.form['email']
         contact_phone = flask.request.form['phone']
         contact_message = flask.request.form['message']
-        msg = Message('Inquiry', 
+        msg = Message('Inquiry',
                       sender=('Contact Inquiry', os.getenv('EMAIL_USERNAME')),
                       recipients=[os.getenv('EMAIL_USERNAME')])
         msg.body = """
@@ -107,11 +107,16 @@ def show_personal_info():
     return render_template("quiz_personal_info.html", **context)
 
 
-@ala.app.route('/quiz/<question>/', methods=['GET'])
+@ala.app.route('/quiz/questions/', methods=['GET'])
 def show_quiz():
     """Display / route."""
-    context = {}
-    return render_template("quiz_start.html", **context)
+    questions = [
+        [1, "Whats your favorite color?", "blue", "red", "green", "purple"],
+        [2, "Where is their favorite place to study?", "At home/dorm", "Library", "Outside/Diag", "Study Lounges/Union"],
+
+    ]
+    context = {'questions': questions}
+    return render_template("quiz.html", **context)
 
 
 def show_quiz_success():
