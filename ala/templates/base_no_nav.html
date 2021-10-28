@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>PersonaGram</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    </head>
+
+    <div class="container">
+        <div class="bigBlock">
+            <!-- NavBar -->
+            <div class="header">
+                <div class="headerLeft">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 465px; height: 80px">
+                    </a>
+                </div>
+                
+                <div class="headerRight">                    
+                    <a href="/quiz/">Quiz</a>
+                    <div class="dropdown">
+                        <p>About</p>
+                        <!-- <button>Menu</button> -->
+                        <div class="dropdown-content">
+                            <a href="/about/">About</a>
+                            <a href="/faq/">FAQ</a>
+                            <a href="/contact/">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This clears the weird styling I had -->
+            <div style="clear: both;"></div>
+            
+            <div class="body">
+            {% block content %}{% endblock%}
+            </div>
+        </div>
+    </div>
+
+    <div class = "footerBG">
+        <div class = "footerBox">
+            <div class="footer">
+                <img src="{{ url_for('static', filename='images/footerLogo.png') }}" alt="logo" style="width: 465px; height: 87px" class="footerElems">
+                <p class="footerElems">info.personagram@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</html>
