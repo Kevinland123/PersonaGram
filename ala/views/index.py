@@ -18,7 +18,7 @@ ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
 mail.init_app(ala.app)
 
 
-stripe_keys = {
+stripe_keys = { 
     "secret_key": os.environ["STRIPE_SECRET_KEY"],
     "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
 }
