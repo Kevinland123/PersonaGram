@@ -27,7 +27,6 @@
                             <a href="/contact/">Contact</a>
                         </div>
                     </div> -->
-
                     <a href="/about/">About</a>
                     <a href="/faq/">FAQ</a>
                     <a href="/contact/">Contact</a>
@@ -43,11 +42,20 @@
         </div>
     </div>
 
-    <div class = "footerBG">
+    <div class="footerBG">
         <div class = "footerBox">
             <div class="footer">
                 <img src="{{ url_for('static', filename='images/footerLogo.png') }}" alt="logo" style="width: 465px; height: 87px" class="footerElems">
-                <p class="footerElems">info.personagram@gmail.com</p>
+                <div>
+                    <div class="footerSameRow">
+                        <img src="{{ url_for('static', filename='images/mail.png') }}" alt="logo" style="width: 40px; height: 28px; margin: auto 1em auto 0;" class="footerElems">
+                        <p class="footerElems">info.personagram@gmail.com</p>
+                    </div>
+                    <div class="footerSameRow">
+                        <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="logo" style="width: 35px; height: 35px; margin: auto 1.2em auto 0;" class="footerElems">
+                        <a href="https://www.instagram.com/personagramumich/"><p class="footerElems">@PersonaGramUmich</p></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

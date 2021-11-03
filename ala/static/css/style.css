@@ -4,19 +4,20 @@
 }
 
 .container {
-    background-color: #FEFBF1;
-    font-family: Nimbus;
+  background-color: #FEFBF1;
+  font-family: Nimbus;
 }
 
 .bigBlock {
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .body {
-    margin-top: 2em;
-    min-height: 63vh;
+  margin-top: 2em;
+  min-height: 63vh;
+  padding-bottom: 2em;
 }
 
 /* NavBar */
@@ -75,6 +76,11 @@
     font-size: 20px;
 
     color: #FFFBF0;
+}
+
+.footerSameRow {
+  display: flex;
+  flex-direction: row;
 }
 
 /* FAQ */
@@ -163,39 +169,38 @@ a {
 }
 
 .quiz_button{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    border: solid;
-    border-radius: 25px;
-    color: white;
+  border: solid;
+  border-radius: 25px;
+  color: white;
 
-    padding: 0.5em 4em 0.5em 4em;
+  width: 14%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5em 4em 0.5em 4em;
 
-    width: 14%;
-    margin-left: auto;
-    margin-right: auto;
-
-    text-decoration: none;
-    font-size: 30px;
+  text-decoration: none;
+  font-size: 30px;
 }
 
 .quiz_button2{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    border: solid;
-    border-radius: 25px;
-    color: #1562D1;
+  border: solid;
+  border-radius: 25px;
+  color: #1562D1;
 
-    padding: 0.5em 4em 0.5em 4em;
+  padding: 0.5em 4em 0.5em 4em;
 
-    width: 14%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 14%;
+  margin-left: auto;
+  margin-right: auto;
 
-    text-decoration: none;
-    font-size: 30px;
+  text-decoration: none;
+  font-size: 30px;
 }
 
 .quiz_button2a {
@@ -273,7 +278,7 @@ a {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 1em;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
@@ -294,6 +299,26 @@ a {
 
 .info_60 {
   width: 60%;
+}
+
+.info_small {
+  max-width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info_submit {
+  width: 15em;
+  height: 3em;
+  background-color: #FEFBF1;
+  border-color: #1562D1;
+  color: #1562D1;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  font-size: 20px;
 }
 
 /* Quiz */
@@ -338,6 +363,7 @@ input {
   text-align: center;
   font-family: 'ABeeZee';
 }
+
 .contact_bold {
   font-size: 48px;
   margin-bottom: 0.5em;
