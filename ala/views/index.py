@@ -18,7 +18,7 @@ ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
 mail.init_app(ala.app)
 
 
-stripe_keys = { 
+stripe_keys = {
     "secret_key": os.environ["STRIPE_SECRET_KEY"],
     "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
 }
@@ -111,16 +111,38 @@ def show_quiz_info():
 def show_quiz():
     """Display / route."""
     questions = [
-        [0, "Whats your favorite color?"],
-        [1, "What do you think is the ideal vacation for the receiver?"],
-        [2, "Where is their favorite place to study?"],
-        [3, "Question"],
-        [4, "Question"]
+        [0, "What's the receiver's favorite color?"],
+        [1, "What is the receiver's ideal vacation?"],
+        [2, "Which of the following best describe your giftee?"],
+        [3, "It's finals season. The recipient doesn't have time to cook food so they grab something quick to eat. What would they grab to eat?"]
+        [4, "What environment suits the receiver the most?"]
+        [5, "What best describes the receiver's fashion sense?"]
+        [6, "What kind of student is the receiver?"]
+        [7, "Where is their favorite place to study?"]
+        [8, "If your giftee was living in a movie, what genre would it be?"]
+        [9, "Your giftee is on AUX. What genre is playing right now?"]
+        [10, "You're traveling through an enchanted forest and come across four potions. Which one do you give to your receiver?"]
+        [11, "What is your giftee's love language?"],
+        [12, "What is the receiver's favorite holiday?"],
+        [13, "How is your receiver spending their free time?"]
     ]
     answers = [
         ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
         ["Exploring a new city", "Anywhere with a beach", "Hiking in a national park", "They like to stay at home"],
-        ["At home/dorm", "Library", "Outside/Diag", "Study Lounges/Union"]
+        ["Morning bird", "Afternoon antelope", "Night owl"]
+        ["Something healthy", "Something greasy", "Something sweet", "They won't eat until their exams are over :("],
+        ["Their home", "The Union", "Rick's", "The Arb", "The Beach"],
+        ["Cottagecore", "E-girl", "Plain-Jane", "Groufit", "Athletic", "Comfy"],
+        ["Clutch procrastinator", "Over-acheiver", "Doesn't take notes", "Organized"],
+        ["At home/dorm", "Outside/The Diag", "Study lounges", "The UGLi"],
+        ["Romance", "Mystery", "Drama", "Comedy", "Horror"],
+        ["Rap", "Pop", "Country", "Rock", "Hip-Hop", "Classical"],
+        ["The shimmering gold potion enchanted with the power of wealth", "The dark green frothing potion containing infinite knowledge", "The light pink potion filled with love", "The enriching potion that’s really a protein shake"],
+        ["Words of affirmation", "Acts of service", "Receiving gifts", "Quality time", "Physical touch"],
+        ["Halloween", "Christmas", "Thanksgiving", "New Year", "Their Birthday", "They hate fun"],
+        ["Playing sports", "Reading a book", "Playing video games", "Doing Arts & Crafts", "Watching a movie"]
+
+
     ]
     context = { 'questions': questions,
                 'answers': answers}
