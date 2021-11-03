@@ -3,7 +3,7 @@ ALA index (main) view.
 """
 import flask
 import os
-from flask import render_template
+from flask import render_template, redirect
 import ala
 import stripe
 from flask_mail import Message, Mail
@@ -100,11 +100,11 @@ def show_quiz_start():
     return render_template("quiz_start.html", **context)
 
 
-@ala.app.route('/quiz/info/', methods=['GET'])
+@ala.app.route('/quiz/info/', methods=['GET', 'POST'])
 def show_quiz_info():
     """Display / route."""
-    context = {}
-    return render_template("quiz_personal_info.html", **context)
+
+    return render_template("quiz_personal_info.html")
 
 
 @ala.app.route('/quiz/questions/', methods=['GET', 'POST'])
@@ -126,7 +126,7 @@ def show_quiz():
         [12, "What is the receiver's favorite holiday?"],
         [13, "How is your receiver spending their free time?"]
     ]
-    
+
     answers = [
         ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
         ["Exploring a new city", "Anywhere with a beach", "Hiking in a national park", "They like to stay at home"],
@@ -195,11 +195,11 @@ def create_checkout_session():
         return flask.jsonify(error=str(e)), 403
 
 
-@ala.app.route("/success")
+@ala.app.route("/success", methods=['GET'])
 def success():
     return render_template("payment_success.html")
 
 
-@ala.app.route("/cancelled")
+@ala.app.route("/cancelled", methods=['GET'])
 def cancelled():
     return render_template("payment_cancelled.html")
