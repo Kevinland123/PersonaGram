@@ -1,24 +1,23 @@
-{% extends "base.html" %}
+{% extends "base_no_nav.html" %}
 {% block content %}
-<div class="">
-  <h3>Quiz!!!</h3>
-</div>
-<div class="">
+<div class="quiz">
+  <div class="quizIntroTitle">
+    <p>Quiz!!!</p>
+  </div>
+  <div class="quizQuestions">
     <div>
-            {% for question in questions %}
-              <p> Question {{question[0]}}: {{question[1]}} </p>
-              <form>
-                <input type="radio" id="choice1" name="choice1" value="{{question[2]}}">
-                <label for="choice1">{{question[2]}}</label><br>
-                <input type="radio" id="choice2" name="choice2" value="{{question[3]}}">
-                <label for="choice2">{{question[3]}}</label><br>
-                <input type="radio" id="choice3" name="choice3" value="{{question[4]}}">
-                <label for="choice3">{{question[4]}}</label><br>
-                <input type="radio" id="choice4" name="choice4" value="{{question[5]}}">
-                <label for="choice4">{{question[5]}}</label><br>
-              </form>
-            {% endfor %}
+      <form action="" method="post">
+        {% for question in questions %}
+        <p> Question {{question[0]+1}}: {{question[1]}} </p>
+          {% for answer in answers[question[0]] %}
+            <input type="radio" id="choice1" name="{{question[0]+1}}" value="{{answer}}">
+            <label for="choice1">{{answer}}</label><br>
+          {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Submit Quiz"/>
+        <input type="hidden" name="operation" value="quiz"/>
+      </form>
     </div>
+  </div>
 </div>
-
 {% endblock %}

@@ -101,21 +101,29 @@ def show_quiz_start():
 
 
 @ala.app.route('/quiz/info/', methods=['GET'])
-def show_personal_info():
+def show_quiz_info():
     """Display / route."""
     context = {}
     return render_template("quiz_personal_info.html", **context)
 
 
-@ala.app.route('/quiz/questions/', methods=['GET'])
+@ala.app.route('/quiz/questions/', methods=['GET', 'POST'])
 def show_quiz():
     """Display / route."""
     questions = [
-        [1, "Whats your favorite color?", "blue", "red", "green", "purple"],
-        [2, "Where is their favorite place to study?", "At home/dorm", "Library", "Outside/Diag", "Study Lounges/Union"],
-
+        [0, "Whats your favorite color?"],
+        [1, "What do you think is the ideal vacation for the receiver?"],
+        [2, "Where is their favorite place to study?"],
+        [3, "Question"],
+        [4, "Question"]
     ]
-    context = {'questions': questions}
+    answers = [
+        ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
+        ["Exploring a new city", "Anywhere with a beach", "Hiking in a national park", "They like to stay at home"],
+        ["At home/dorm", "Library", "Outside/Diag", "Study Lounges/Union"]
+    ]
+    context = { 'questions': questions,
+                'answers': answers}
     return render_template("quiz.html", **context)
 
 
@@ -123,6 +131,7 @@ def show_quiz():
 def show_quiz_success():
     """Display / route"""
     return render_template("quiz_success.html")
+
 
 @ala.app.route("/config")
 def get_publishable_key():

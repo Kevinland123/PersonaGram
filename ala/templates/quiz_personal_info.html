@@ -1,18 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="info_form">
-  <p> Before you take this quiz, who is the box intended for? </p>
-  <form action="" method="post">
-    <input type="text" name="sender" placeholder="Sender" required/>
-    <input type="text" name="receiver" placeholder="Receiver" required/>
-    <p> Contact Information </p>
-    <input type="email" name="email" placeholder="Email" required/>
-    <input type="tel" name="phone" placeholder ="Phone Number" required/>
+  <p class="info_title"> Before you take this quiz, who is the box intended for? </p>
+  <form action="" class="info_fields" method="post" enctype="multipart/form-data">
+    <p class="info_subtitle">Sender's Contact Information (That's you!)</p>
+    <input type="text" name="sender_name" placeholder="*Sender's Name:" required/>
+    <input type="text" name="sender_email" placeholder="*Sender's Email:" required/>
+    <input type="text" name="sender_number" placeholder="*Sender's Phone Number:" required/>
+    <p class="info_subtitle">Recipient's Contact Information</p>
+    <input type="text" name="recipient_name" placeholder="*Recipient's Name:" required/>
+    <input type="text" name="recipient_email" placeholder="*Recipient's Email:" required/>
+    <input type="text" name="recipient_number" placeholder="*Recipient's Phone Number:" required/>
+    <p class="info_subtitle">Recipient's Shipping Address</p>
+    <input type="text" name="street" placeholder="*Street Address:" required/>
+    <div>
+      <input type="text" class="info_60" name="recipient_email" placeholder="*City:" required/>
+      <input type="text" class="info_35" name="recipient_number" placeholder="*Zipcode:" required/>
+    </div>
+    <p class="info_subtitle">How would you like the recipient to receive the box?</p>
+    <div>
+      <input type="radio" id="deliver" name="shipping" value="deliver">
+      <label for="deliver">Deliver to their house</label><br>
+      <input type="radio" id="pickup" name="shipping" value="pickup">
+      <label for="pickup">Have the recipient pick it up</label><br>
+    </div>
+    
     <input class="contact_submit" type="submit" value="Submit"/> </div>
   </form>
-</div>
-<div class="quiz_button2">
-  <a class="quiz_button2a" href="/quiz/"> Take Quiz </a>
+  <div>
+    <p>
+      *We will send the recipient a confirmation email with the pickup information. 
+      If there is a case in which the recipient cannot pick up the gift box, then 
+      we will withhold the gift box until the next pick up time! Please refer to 
+      the FAQ page for more details. 
+    </p>
+    <p>
+      If you have any questions, feel free to email us at info.personagram@gmail.com.
+    </p>
+  </div>
 </div>
 
+<div class="quiz_button2">
+  <a class="quiz_button2a" href="/quiz/questions/"> Take Quiz </a>
+</div>
 {% endblock %}
