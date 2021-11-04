@@ -103,6 +103,36 @@ def show_quiz_start():
 @ala.app.route('/quiz/info/', methods=['GET', 'POST'])
 def show_quiz_info():
     """Display / route."""
+    if flask.request.method == 'POST':
+        sender_name = flask.request.form['sender_name']
+        sender_email = flask.request.form['sender_email']
+        sender_number = flask.request.form['sender_number']
+        recipient_name = flask.request.form['recipient_name']
+        recipient_email = flask.request.form['recipient_email']
+        recipient_number = flask.request.form['recipient_number']
+        recipient_email = flask.request.form['recipient_email']
+        street = flask.request.form['street']
+        city = flask.request.form['city']
+        zipcode = flask.request.form['zipcode']
+        method = flask.request.form['method']
+        context = {
+            'sender_name': sender_name,
+            'sender_email': sender_email,
+            'sender_number': sender_number,
+            'recipient_name': recipient_name,
+            'recipient_email': recipient_email,
+            'recipient_number': recipient_number,
+            'street': street,
+            'city': city,
+            'zipcode': zipcode,
+            'method': method
+        }
+        print(context)
+
+        # INSERT A BUNCH OF SQL STORING AND GENERATE ID
+
+        # Redirect to quiz
+        return redirect(flask.url_for('show_quiz'))
 
     return render_template("quiz_personal_info.html")
 
@@ -110,6 +140,50 @@ def show_quiz_info():
 @ala.app.route('/quiz/questions/', methods=['GET', 'POST'])
 def show_quiz():
     """Display / route."""
+    if flask.request.method == 'POST':
+        q1 = flask.request.form['1']
+        q2 = flask.request.form['2']
+        q3 = flask.request.form['3']
+        q4 = flask.request.form['4']
+        q5 = flask.request.form['5']
+        q6 = flask.request.form['6']
+        q7 = flask.request.form['7']
+        q8 = flask.request.form['8']
+        q9 = flask.request.form['9']
+        q10 = flask.request.form['10']
+        q11 = flask.request.form['11']
+        q12 = flask.request.form['12']
+        q13 = flask.request.form['13']
+        q14 = flask.request.form['14']
+        q15 = flask.request.form['15']
+        q16 = flask.request.form['16']
+
+        check = {
+            'q1': q1,
+            'q2': q2,
+            'q3': q3,
+            'q4': q4,
+            'q5': q5,
+            'q6': q6,
+            'q7': q7,
+            'q8': q8,
+            'q9': q9,
+            'q10': q10,
+            'q11': q11,
+            'q12': q12,
+            'q13': q13,
+            'q14': q14,
+            'q15': q15,
+            'q16': q16,
+        }
+
+        print(check)
+        
+        # Cool SQL
+
+        # Redirect
+        return redirect(flask.url_for('show_quiz_success'))
+
     questions = [
         [0, "What's the receiver's favorite color?"],
         [1, "What is the receiver's ideal vacation?"],
@@ -126,7 +200,6 @@ def show_quiz():
         [12, "What is the receiver's favorite holiday?"],
         [13, "How is your receiver spending their free time?"]
     ]
-
     answers = [
         ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
         ["Exploring a new city", "Anywhere with a beach", "Hiking in a national park", "They like to stay at home"],
@@ -143,8 +216,9 @@ def show_quiz():
         ["Halloween", "Christmas", "Thanksgiving", "New Year", "Their Birthday", "They hate fun"],
         ["Playing sports", "Reading a book", "Playing video games", "Doing Arts & Crafts", "Watching a movie"]
     ]
+
     context = { 'questions': questions,
-                'answers': answers}
+                'answers': answers }
     return render_template("quiz.html", **context)
 
 

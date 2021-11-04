@@ -2,29 +2,28 @@
 {% block content %}
 <div class="info_form">
   <p class="info_title"> Before you take this quiz, who is the box intended for? </p>
-  <form action="" class="info_fields" method="post" enctype="multipart/form-data">
+  <form action="/quiz/info/" class="info_fields" method="post" enctype="multipart/form-data">
     <p class="info_subtitle">Sender's Contact Information (That's you!)</p>
     <input type="text" name="sender_name" placeholder="*Sender's Name:" required/>
     <input type="text" name="sender_email" placeholder="*Sender's Email:" required/>
-    <input type="text" name="sender_number" placeholder="*Sender's Phone Number:" required/>
+    <input type="tel" name="sender_number" placeholder="*Sender's Phone Number:" required/>
     <p class="info_subtitle">Recipient's Contact Information</p>
     <input type="text" name="recipient_name" placeholder="*Recipient's Name:" required/>
     <input type="text" name="recipient_email" placeholder="*Recipient's Email:" required/>
-    <input type="text" name="recipient_number" placeholder="*Recipient's Phone Number:" required/>
+    <input type="tel" name="recipient_number" placeholder="*Recipient's Phone Number:" required/>
     <p class="info_subtitle">Recipient's Shipping Address</p>
     <input type="text" name="street" placeholder="*Street Address:" required/>
     <div>
-      <input type="text" class="info_60" name="recipient_email" placeholder="*City:" required/>
-      <input type="text" class="info_35" name="recipient_number" placeholder="*Zipcode:" required/>
+      <input type="text" class="info_60" name="city" placeholder="*City:" required/>
+      <input type="number" class="info_35" name="zipcode" placeholder="*Zipcode:" required/>
     </div>
     <p class="info_subtitle">How would you like the recipient to receive the box?</p>
     <div>
-      <input type="radio" id="deliver" name="shipping" value="deliver">
+      <input type="radio" id="deliver" name="method" value="deliver">
       <label for="deliver">Deliver to their house</label><br>
-      <input type="radio" id="pickup" name="shipping" value="pickup">
+      <input type="radio" id="pickup" name="method" value="pickup">
       <label for="pickup">Have the recipient pick it up</label><br>
     </div>
-    
     <input class="info_submit" type="submit" value="Continue to Quiz"/>
   </form>
   <div class="info_small">
