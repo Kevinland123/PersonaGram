@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p class="admin_title">Users</p>
+{% for user in users %}
+<div class="admin_box">
+  <p><b>ID:</b> {{user['ID']}}</p>
+  <p><b>EXID:</b> {{user['exid']}}</p>
+  <p><b>Sender Information:</b> {{user['senderName']}} | {{user['senderEmail']}} | {{user['senderPhone']}}</p>
+  <p><b>Recipient Information:</b> {{user['receiverName']}} | {{user['receiverEmail']}} | {{user['receiverPhone']}}</p>
+  <p><b>Shipping Info:</b> {{user['street']}} | {{user['city']}} | {{user['zipcode']}}</p>
+  <p><b>Method:</b> {{user['street']}} | {{user['city']}} | {{user['zipcode']}}</p>
+  <p><b>Paid:</b> {% if user['paid'] == 0 %} Unpaid {% else %} Paid {% endif %}</p>
+  <p><b>Created:</b> {{user['created']}}</p>
+</div>
+{% endfor %}
+<p class="admin_title">Answers</p>
+{% for answer in answers %}
+<div class="admin_box">
+  <p><b>ID:</b> {{answer['ID']}}</p>
+  <p><b>Answer 1:</b> {{answer['answer1']}}</p>
+  <p><b>Answer 2:</b> {{answer['answer2']}}</p>
+  <p><b>Answer 3:</b> {{answer['answer3']}}</p>
+  <p><b>Answer 4:</b> {{answer['answer4']}}</p>
+  <p><b>Answer 5:</b> {{answer['answer5']}}</p>
+  <p><b>Answer 6:</b> {{answer['answer6']}}</p>
+  <p><b>Answer 7:</b> {{answer['answer7']}}</p>
+  <p><b>Answer 8:</b> {{answer['answer8']}}</p>
+  <p><b>Answer 9:</b> {{answer['answer9']}}</p>
+  <p><b>Answer 10:</b> {{answer['answer10']}}</p>
+  <p><b>Answer 11:</b> {{answer['answer11']}}</p>
+  <p><b>Answer 12:</b> {{answer['answer12']}}</p>
+  <p><b>Answer 13:</b> {{answer['answer13']}}</p>
+  <p><b>Answer 14:</b> {{answer['answer14']}}</p>
+  <p><b>Answer 15:</b> {{answer['answer15']}}</p>
+  <p><b>Answer 16:</b> {{answer['answer16']}}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

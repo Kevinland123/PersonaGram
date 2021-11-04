@@ -96,6 +96,29 @@ def contact():
     return render_template("contact.html")
 
 
+@ala.app.route('/admin/adminPageForKevinToLookAtOnly/', methods=['GET'])
+def admin():
+    """Admin page."""
+    connection = ala.model.get_db()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM users "
+    )
+    users = cur.fetchall()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM answers "
+    )
+    answers = cur.fetchall()
+
+    context = {
+        'users': users,
+        'answers': answers
+    }
+
+    return render_template("admin.html", **context)
+
+
 @ala.app.route('/quiz/', methods=['GET'])
 def show_quiz_start():
     """Display / route."""
@@ -166,6 +189,15 @@ def show_quiz(id):
         return redirect(flask.url_for('show_index'))
 
     if flask.request.method == 'POST':
+        cur = connection.execute(
+            "SELECT id "
+            "FROM users "
+            "WHERE exid = ?", (id, )
+        )
+
+        userid = cur.fetchone()
+        print(userid['ID'])
+
         q1 = flask.request.form['1']
         q2 = flask.request.form['2']
         q3 = flask.request.form['3']
@@ -206,11 +238,12 @@ def show_quiz(id):
         connection = ala.model.get_db()
 
         # Cool SQL
+        # For future, if answer already exist then update the answer instead
         connection.execute(
             "INSERT INTO "
-            "answers (answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16)"
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
-            (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16)
+            "answers (ID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16)"
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            (userid['ID'],q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16)
         )
 
         # Redirect

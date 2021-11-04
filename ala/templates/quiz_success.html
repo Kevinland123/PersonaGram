@@ -12,7 +12,7 @@
         <div class="bigBlock">
             <!-- NavBar -->
             <div class="header">
-                <div class="headerLeft">
+                <div class="headerCenter">
                     <a href="/">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width: 465px; height: 80px">
                     </a>
@@ -24,8 +24,11 @@
             
             <div class="body">
               <div class="quizIntroTitle">
-                <h3>Thanks for completion of quiz</h3>
-                <button id="submitBtn" value="{{id}}">Proceed to Transaction</button>
+                <h3>Thank you for completing the quiz!</h3>
+                <div style="margin-left: auto; margin-right: auto;">
+                    <img src="{{ url_for('static', filename='images/quiz_success.png') }}" alt="success art" style="max-width: 700px" />
+                </div>
+                <button id="submitBtn" class="transaction_button" value="{{id}}">Proceed to Transaction</button>
               </div>
             </div>
         </div>

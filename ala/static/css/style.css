@@ -324,6 +324,18 @@ a {
   justify-content: center;
   width: 60%;
   font-size: 20px;
+  margin-left: 20%;
+}
+
+/* Quiz Success */
+.transaction_button {
+  width: 15em;
+  height: 3em;
+  background-color: #1562D1;
+  color: white;
+  border-radius: 5px;
+  margin-top: 3em;
+  font-size: 20px;
 }
 
 /* Contact Page */
@@ -365,6 +377,18 @@ input {
 
 .contact_text {
   font-size: 24px;
+}
+
+/* Admin Page */
+.admin_title {
+  font-size: 40px;
+}
+
+.admin_box {
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+  padding-left: 2em;
 }
 
 /* About Page */

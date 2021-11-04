@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <p>Your payment succeeded.</p>
-    </div>
-  </section>
+<div style="display: flex; justify-content: center;;">
+  <img src="{{ url_for('static', filename='images/payment_success.png') }}" alt="success art" style="max-width: 1000px" />
+</div>
 {% endblock %}

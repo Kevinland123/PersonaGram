@@ -20,7 +20,7 @@ CREATE TABLE users(
 
 
 CREATE TABLE answers(
-  ID        INTEGER NOT NULL PRIMARY KEY,
+  ID        INTEGER     NOT NULL,
   answer1   varchar(50) NOT NULL,
   answer2   varchar(50) NOT NULL,
   answer3   varchar(50) NOT NULL,
