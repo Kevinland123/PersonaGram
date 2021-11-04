@@ -26,7 +26,7 @@ case $1 in
         set -x
         sqlite3 var/ala.sqlite3 < sql/schema.sql
         sqlite3 var/ala.sqlite3 < sql/data.sql
-        cp sql/uploads/* var/uploads/
+        # cp sql/uploads/* var/uploads/
     fi
     ;;
 
@@ -42,7 +42,7 @@ case $1 in
     rm -rf var/ala.sqlite3
     sqlite3 var/ala.sqlite3 < sql/schema.sql
     sqlite3 var/ala.sqlite3 < sql/data.sql
-    cp sql/uploads/* var/uploads/
+    # cp sql/uploads/* var/uploads/
     ;;
 
   "dump")
