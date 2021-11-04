@@ -13,8 +13,10 @@ mail = Mail()
 ala.app.config["MAIL_SERVER"] = "smtp.gmail.com"
 ala.app.config["MAIL_PORT"] = 465
 ala.app.config["MAIL_USE_SSL"] = True
-ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
-ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
+# ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
+ala.app.config["MAIL_USERNAME"] = 'info.personagram@gmail.com'
+# ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
+ala.app.config["MAIL_PASSWORD"] = 'GoBlueAla223'
 mail.init_app(ala.app)
 
 
