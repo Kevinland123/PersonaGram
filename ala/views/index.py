@@ -19,8 +19,10 @@ mail.init_app(ala.app)
 
 
 stripe_keys = {
-    "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+    # "secret_key": os.environ["STRIPE_SECRET_KEY"],
+    "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
+    "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
+    # "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
 }
 
 stripe.api_key = stripe_keys["secret_key"]
