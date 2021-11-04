@@ -2,6 +2,7 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE users(
   ID            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  exid          varchar(100)NOT NULL,
   senderName    varchar(40) NOT NULL,
   senderEmail   varchar(50) NOT NULL,
   senderPhone   varchar(20) NOT NULL,
@@ -12,13 +13,14 @@ CREATE TABLE users(
   city          varchar(30),
   zipcode       INTEGER NOT NULL,
   method        varchar(10) NOT NULL,
-  created       datetime default current_timestamp
+  created       datetime default current_timestamp,
+  paid          INTEGER default 0
+  -- 0 is false, 1 is true
 );
 
 
 CREATE TABLE answers(
   ID        INTEGER NOT NULL PRIMARY KEY,
-  answer0   varchar(50) NOT NULL,
   answer1   varchar(50) NOT NULL,
   answer2   varchar(50) NOT NULL,
   answer3   varchar(50) NOT NULL,
@@ -34,5 +36,6 @@ CREATE TABLE answers(
   answer13  varchar(50) NOT NULL,
   answer14  varchar(50) NOT NULL,
   answer15  varchar(50) NOT NULL,
+  answer16   varchar(50) NOT NULL,
   FOREIGN KEY(ID) REFERENCES users(ID)
 );

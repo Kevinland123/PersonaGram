@@ -5,6 +5,7 @@ import flask
 import os
 from flask import render_template, redirect
 import ala
+import uuid
 import stripe
 from flask_mail import Message, Mail
 
@@ -106,6 +107,8 @@ def show_quiz_start():
 def show_quiz_info():
     """Display / route."""
     if flask.request.method == 'POST':
+        exid = str(uuid.uuid4())
+        # flask.session['exid'] = exid
         sender_name = flask.request.form['sender_name']
         sender_email = flask.request.form['sender_email']
         sender_number = flask.request.form['sender_number']
@@ -118,6 +121,7 @@ def show_quiz_info():
         zipcode = flask.request.form['zipcode']
         method = flask.request.form['method']
         context = {
+            'exid': exid,
             'sender_name': sender_name,
             'sender_email': sender_email,
             'sender_number': sender_number,
@@ -127,29 +131,40 @@ def show_quiz_info():
             'street': street,
             'city': city,
             'zipcode': zipcode,
-            'method': method
+            'method': method,
+            'paid': 0
         }
         print(context)
 
+        # Create new SQL entry and get the ID
         connection = ala.model.get_db()
         connection.execute(
             "INSERT INTO "
-            "users (senderName, senderEmail, senderPhone, receiverName, receiverEmail, receiverPhone, street, city, zipcode, method)"
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
-            (sender_name,sender_email,sender_number, recipient_name, recipient_email, recipient_number, street, city, zipcode, method)
-
+            "users (exid, senderName, senderEmail, senderPhone, receiverName, receiverEmail, receiverPhone, street, city, zipcode, method)"
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            (exid, sender_name,sender_email,sender_number, recipient_name, recipient_email, recipient_number, street, city, zipcode, method,)
         )
-        # INSERT A BUNCH OF SQL STORING AND GENERATE ID
 
         # Redirect to quiz
-        return redirect(flask.url_for('show_quiz'))
-
+        return redirect(flask.url_for('show_quiz', id=exid))
     return render_template("quiz_personal_info.html")
 
 
-@ala.app.route('/quiz/questions/', methods=['GET', 'POST'])
-def show_quiz():
+@ala.app.route('/quiz/questions/<id>', methods=['GET', 'POST'])
+def show_quiz(id):
     """Display / route."""
+    # check if session uuid is in database, else go back to home page
+    connection = ala.model.get_db()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM users "
+        "WHERE exid = ?", (id, )
+    )
+    user = cur.fetchall()
+    if len(user) == 0:
+        print("Error: Invalid exid")
+        return redirect(flask.url_for('show_index'))
+
     if flask.request.method == 'POST':
         q1 = flask.request.form['1']
         q2 = flask.request.form['2']
@@ -190,17 +205,16 @@ def show_quiz():
         print(check)
         connection = ala.model.get_db()
 
+        # Cool SQL
         connection.execute(
             "INSERT INTO "
-            "answers (answer0, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15)"
+            "answers (answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16)"
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
             (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16)
-
         )
-        # Cool SQL
 
         # Redirect
-        return redirect(flask.url_for('show_quiz_success'))
+        return redirect(flask.url_for('show_quiz_success', id=id))
 
     questions = [
         [0, "What's the receiver's favorite color?"],
@@ -240,10 +254,26 @@ def show_quiz():
     return render_template("quiz.html", **context)
 
 
-@ala.app.route('/quiz/success/', methods=['GET', 'POST'])
-def show_quiz_success():
+@ala.app.route('/quiz/success/<id>', methods=['GET', 'POST'])
+def show_quiz_success(id):
     """Display / route"""
-    return render_template("quiz_success.html")
+    # Check
+    connection = ala.model.get_db()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM users "
+        "WHERE exid = ?", (id, )
+    )
+    user = cur.fetchall()
+    if len(user) == 0:
+        print("Error: Invalid exid")
+        return redirect(flask.url_for('show_index'))
+
+    context = {
+        'id': id
+    }
+
+    return render_template("quiz_success.html", **context)
 
 
 @ala.app.route("/config")
@@ -253,8 +283,8 @@ def get_publishable_key():
     return flask.jsonify(stripe_config)
 
 
-@ala.app.route("/create-checkout-session")
-def create_checkout_session():
+@ala.app.route("/create-checkout-session/<id>/")
+def create_checkout_session(id):
     domain_url = "http://localhost:8000/"
     stripe.api_key = stripe_keys["secret_key"]
 
@@ -262,15 +292,13 @@ def create_checkout_session():
         # Create new Checkout Session for the order
         # Other optional params include:
         # [billing_address_collection] - to display billing address details on the page
-        # [customer] - if you have an existing Stripe Customer ID
-        # [payment_intent_data] - capture the payment later
         # [customer_email] - prefill the email input in the form
         # For full details see https://stripe.com/docs/api/checkout/sessions/create
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
         checkout_session = stripe.checkout.Session.create(
-            success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url=domain_url + "cancelled",
+            success_url=domain_url + "success/" + id + "/?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=domain_url + "quiz/success/" + id,
             payment_method_types=["card"],
             mode="payment",
             line_items=[
@@ -287,11 +315,25 @@ def create_checkout_session():
         return flask.jsonify(error=str(e)), 403
 
 
-@ala.app.route("/success", methods=['GET'])
-def success():
+@ala.app.route("/success/<id>/", methods=['GET'])
+def success(id):
+    # Check if user exist
+    connection = ala.model.get_db()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM users "
+        "WHERE exid = ?", (id, )
+    )
+    user = cur.fetchall()
+    if len(user) == 0:
+        print("Error: Invalid exid")
+        return redirect(flask.url_for('show_index'))
+    
+    # Update paid
+    connection.execute(
+        "UPDATE users "
+        "SET paid = ? "
+        "WHERE exid = ?", (1, id, )
+    )
+    
     return render_template("payment_success.html")
-
-
-@ala.app.route("/cancelled", methods=['GET'])
-def cancelled():
-    return render_template("payment_cancelled.html")

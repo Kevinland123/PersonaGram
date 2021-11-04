@@ -10,8 +10,11 @@ fetch("/config")
 
   // Event handler
   document.querySelector("#submitBtn").addEventListener("click", () => {
+    const id = document.querySelector("#submitBtn").value;
+    console.log(id)
+    
     // Get Checkout Session ID
-    fetch("/create-checkout-session")
+    fetch("/create-checkout-session/" + id)
     .then((result) => { return result.json(); })
     .then((data) => {
       console.log(data);
