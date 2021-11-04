@@ -24,37 +24,31 @@ case $1 in
     else
         echo "Database does not exist, creating database"
         set -x
-        mkdir -p var/uploads
         sqlite3 var/ala.sqlite3 < sql/schema.sql
         sqlite3 var/ala.sqlite3 < sql/data.sql
-        cp sql/uploads/* var/uploads/
+
     fi
     ;;
 
   "destroy")
     echo "database destroyed"
     set -x
-    rm -rf var/ala.sqlite3 var/uploads
+    rm -rf var/ala.sqlite3
     ;;
 
   "reset")
     echo "resetting database"
     set -x
-    rm -rf var/ala.sqlite3 var/uploads
-    mkdir -p var/uploads
+    rm -rf var/ala.sqlite3
     sqlite3 var/ala.sqlite3 < sql/schema.sql
     sqlite3 var/ala.sqlite3 < sql/data.sql
-    cp sql/uploads/* var/uploads/
     ;;
 
   "dump")
     echo "dump:"
     set -x
-    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM comments'
-    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM following'
-    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM likes'
-    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM posts'
     sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM users'
+    sqlite3 -batch -line var/ala.sqlite3 'SELECT * FROM answers'
     ;;
 
   *)

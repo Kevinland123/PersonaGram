@@ -131,6 +131,14 @@ def show_quiz_info():
         }
         print(context)
 
+        connection = ala.model.get_db()
+        connection.execute(
+            "INSERT INTO "
+            "users (senderName, senderEmail, senderPhone, receiverName, receiverEmail, receiverPhone, street, city, zipcode, method)"
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            (sender_name,sender_email,sender_number, recipient_name, recipient_email, recipient_number, street, city, zipcode, method)
+
+        )
         # INSERT A BUNCH OF SQL STORING AND GENERATE ID
 
         # Redirect to quiz
@@ -180,7 +188,15 @@ def show_quiz():
         }
 
         print(check)
-        
+        connection = ala.model.get_db()
+
+        connection.execute(
+            "INSERT INTO "
+            "answers (answer0, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15)"
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16)
+
+        )
         # Cool SQL
 
         # Redirect

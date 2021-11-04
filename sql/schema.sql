@@ -1,7 +1,7 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE users(
-  ID            INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  ID            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   senderName    varchar(40) NOT NULL,
   senderEmail   varchar(50) NOT NULL,
   senderPhone   varchar(20) NOT NULL,
@@ -34,6 +34,5 @@ CREATE TABLE answers(
   answer13  varchar(50) NOT NULL,
   answer14  varchar(50) NOT NULL,
   answer15  varchar(50) NOT NULL,
-  answer16  varchar(50) NOT NULL,
   FOREIGN KEY(ID) REFERENCES users(ID)
 );
