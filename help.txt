@@ -8,3 +8,12 @@ source env/bin/activate
 # Run on Local Machine:
 gunicorn -b localhost:8000 -w 2 -D ala:app
 pkill -f gunicorn
+
+
+
+
+
+# For future
+1. login for admin page
+2. kill the intermediate page
+3. fix .env file

@@ -281,7 +281,7 @@ def show_quiz(id):
         ["Exploring a new city", "Anywhere with a beach", "Hiking in a national park", "They like to stay at home"],
         ["Morning bird", "Afternoon antelope", "Night owl"],
         ["Something healthy", "Something greasy", "Something sweet", "They won't eat until their exams are over :("],
-        ["Their home", "The Union", "Rick's", "The Arb", "The Beach"],
+        ["Their home", "The Union", "Rick's", "The Arb", "The beach"],
         ["Cottagecore", "E-girl", "Plain-Jane", "Groufit", "Athletic", "Comfy"],
         ["Clutch procrastinator", "Over-acheiver", "Doesn't take notes", "Organized"],
         ["At home/dorm", "Outside/The Diag", "Study lounges", "The UGLi"],
@@ -289,8 +289,8 @@ def show_quiz(id):
         ["Rap", "Pop", "Country", "Rock", "Hip-Hop", "Classical"],
         ["The shimmering gold potion enchanted with the power of wealth", "The dark green frothing potion containing infinite knowledge", "The light pink potion filled with love", "The enriching potion that’s really a protein shake"],
         ["Words of affirmation", "Acts of service", "Receiving gifts", "Quality time", "Physical touch"],
-        ["Halloween", "Christmas", "Thanksgiving", "New Year", "Their Birthday", "They hate fun"],
-        ["Playing sports", "Reading a book", "Playing video games", "Doing Arts & Crafts", "Watching a movie"]
+        ["Halloween", "Christmas", "Thanksgiving", "New Year", "July 4th", "Their Birthday", "They hate fun"],
+        ["Playing sports", "Reading a book", "Playing video games", "Going to the gym", "Doing arts & crafts", "Watching a movie"]
     ]
 
     context = { 'questions': questions,
