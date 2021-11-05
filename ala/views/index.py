@@ -15,8 +15,10 @@ ala.app.config.update(
     MAIL_PORT=465,
     MAIL_USE_TLS=False,
     MAIL_USE_SSL=True,
-    MAIL_USERNAME=os.getenv('EMAIL_USERNAME'),
-    MAIL_PASSWORD=os.getenv('EMAIL_PASSWORD'),
+    # MAIL_USERNAME=os.getenv('EMAIL_USERNAME'),
+    MAIL_USERNAME='info.personagram@gmail.com',
+    # MAIL_PASSWORD=os.getenv('EMAIL_PASSWORD'),
+    MAIL_PASSWORD='GoBlueAla223',
     MAIL_DEFAULT_SENDER=os.getenv('EMAIL_USERNAME')
 )
 mail.init_app(ala.app)
@@ -91,8 +93,8 @@ def contact():
         """ % (contact_name, contact_phone, contact_email, contact_message)
         
         msg = Message(subject='Inquiry', 
-                      sender=('Contact Inquiry', os.getenv('EMAIL_USERNAME')),
-                      recipients=[os.getenv('EMAIL_USERNAME')],
+                      sender=('Contact Inquiry', 'info.personagram@gmail.com'),
+                      recipients=['info.personagram@gmail.com'],
                       body=body)
         
         mail.send(msg)
