@@ -12,9 +12,10 @@ from flask_mail import Message, Mail
 
 mail = Mail()
 ala.app.config["MAIL_SERVER"] = "smtp.gmail.com"
-ala.app.config["MAIL_PORT"] = 465
-ala.app.config["MAIL_USE_TLS"] = False
-ala.app.config["MAIL_USE_SSL"] = True
+# ala.app.config["MAIL_PORT"] = 465
+ala.app.config["MAIL_PORT"] = 587
+ala.app.config["MAIL_USE_TLS"] = True
+ala.app.config["MAIL_USE_SSL"] = False
 ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
 ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
 mail.init_app(ala.app)
@@ -51,11 +52,12 @@ def show_faq():
         ['What’s inside each box?',                      '''It can contain anything from snacks to trinkets to discount codes; anything
                                                             that we think your friend might like! We will arrange the box just like we
                                                             would for our own friends.'''],
-        ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the recipient depending on the location.
-                                                            Otherwise, we will ship the box.'''],
+        ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the Ann Arbor vicinity, and we will send an email 
+                                                            confirming our delivery date to the sender 1-2 days prior.'''],
+        ['When will the box be available for pickup?',   '''We will have a few pickup dates on campus, date and time TBD via email to the reciever.'''],
         ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''],
         ['How affordable are the boxes?',                '''The boxes are very affordable! You will spend $10 on a gift box
-                                                            which is worth a lot more!'''],
+                                                            that is worth a lot more than its price!'''],
         ['Is shipping included?',                        '''Shipping is included in the total price!'''],
         ['Will my friend know who it’s from?',           '''The gift box will be completely anonymous, although you have
                                                             the option to include a note'''],
@@ -94,6 +96,7 @@ def contact():
 
         %s
         """ % (contact_name, contact_phone, contact_email, contact_message)
+        
         mail.send(msg)
 
         # print(message)

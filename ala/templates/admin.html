@@ -9,7 +9,7 @@
   <p><b>Sender Information:</b> {{user['senderName']}} | {{user['senderEmail']}} | {{user['senderPhone']}}</p>
   <p><b>Recipient Information:</b> {{user['receiverName']}} | {{user['receiverEmail']}} | {{user['receiverPhone']}}</p>
   <p><b>Shipping Info:</b> {{user['street']}} | {{user['city']}} | {{user['zipcode']}}</p>
-  <p><b>Method:</b> {{user['street']}} | {{user['city']}} | {{user['zipcode']}}</p>
+  <p><b>Method:</b> {{user['method']}}</p>
   <p><b>Paid:</b> {% if user['paid'] == 0 %} Unpaid {% else %} Paid {% endif %}</p>
   <p><b>Created:</b> {{user['created']}}</p>
 </div>
