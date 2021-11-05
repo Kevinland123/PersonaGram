@@ -11,9 +11,10 @@ from flask_mail import Message, Mail
 
 mail = Mail()
 ala.app.config["MAIL_SERVER"] = "smtp.gmail.com"
-ala.app.config["MAIL_PORT"] = 465
-ala.app.config["MAIL_USE_TLS"] = False
-ala.app.config["MAIL_USE_SSL"] = True
+# ala.app.config["MAIL_PORT"] = 465
+ala.app.config["MAIL_PORT"] = 587
+ala.app.config["MAIL_USE_TLS"] = True
+ala.app.config["MAIL_USE_SSL"] = False
 ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
 ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
 mail.init_app(ala.app)
