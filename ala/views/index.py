@@ -19,7 +19,7 @@ ala.app.config.update(
     MAIL_USERNAME='info.personagram@gmail.com',
     # MAIL_PASSWORD=os.getenv('EMAIL_PASSWORD'),
     MAIL_PASSWORD='GoBlueAla223',
-    MAIL_DEFAULT_SENDER=os.getenv('EMAIL_USERNAME')
+    # MAIL_DEFAULT_SENDER=os.getenv('EMAIL_USERNAME')
 )
 mail.init_app(ala.app)
 
