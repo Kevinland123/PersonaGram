@@ -13,6 +13,7 @@ from flask_mail import Message, Mail
 mail = Mail()
 ala.app.config["MAIL_SERVER"] = "smtp.gmail.com"
 ala.app.config["MAIL_PORT"] = 465
+ala.app.config["MAIL_USE_TLS"] = False
 ala.app.config["MAIL_USE_SSL"] = True
 ala.app.config["MAIL_USERNAME"] = os.getenv('EMAIL_USERNAME')
 ala.app.config["MAIL_PASSWORD"] = os.getenv('EMAIL_PASSWORD')
@@ -82,6 +83,9 @@ def contact():
         contact_email = flask.request.form['email']
         contact_phone = flask.request.form['phone']
         contact_message = flask.request.form['message']
+
+
+
         msg = Message('Inquiry',
                       sender=('Contact Inquiry', os.getenv('EMAIL_USERNAME')),
                       recipients=[os.getenv('EMAIL_USERNAME')])
@@ -91,6 +95,15 @@ def contact():
         %s
         """ % (contact_name, contact_phone, contact_email, contact_message)
         mail.send(msg)
+
+        # print(message)
+
+        # mail.send_message(subject="Website Contact Form",
+        #                   sender="Contact Inquiry",
+        #                 #   body=message,
+        #                   body="hey",
+        #                   recipients=["info.personagram@gmail.com"])
+        
         return render_template("contact.html", success=True)
 
     return render_template("contact.html")
