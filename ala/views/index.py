@@ -15,10 +15,10 @@ ala.app.config.update(
     MAIL_PORT=465,
     MAIL_USE_TLS=False,
     MAIL_USE_SSL=True,
-    MAIL_USERNAME=os.getenv('EMAIL_USERNAME'),
-    # MAIL_USERNAME='info.personagram@gmail.com',
-    MAIL_PASSWORD=os.getenv('EMAIL_PASSWORD'),
-    # MAIL_PASSWORD='GoBlueAla223',
+    # MAIL_USERNAME=os.getenv('EMAIL_USERNAME'),        # heroku can't read from os?
+    MAIL_USERNAME='info.personagram@gmail.com',
+    # MAIL_PASSWORD=os.getenv('EMAIL_PASSWORD'),
+    MAIL_PASSWORD='GoBlueAla223',
 )
 mail.init_app(ala.app)
 
