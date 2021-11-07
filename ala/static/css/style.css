@@ -44,6 +44,7 @@ html,body
 .headerRight {
   float: right;
   font-weight: 700;
+}
 
 .headerRight a {
   display: inline-block;
