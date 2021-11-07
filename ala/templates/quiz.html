@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="quiz">
+  <div class="quizIntroTitle">
+    <p>PersonaGram's Personality Quiz</p>
+  </div>
+  <div class="quizQuestions">
+    <form action="" method="post">
+      {% for question in questions %}
+      <p>Question {{question[0]+1}}: {{question[1]}}</p>
+        {% for answer in answers[question[0]] %}
+          <input type="radio" id="{{answer}}" name="{{question[0]+1}}" value="{{answer}}" required>
+          <label for="{{answer}}">{{answer}}</label><br>
+        {% endfor %}
+      {% endfor %}
+      <p>Question 15: Would you like to remain anonymous and leave a note?</p>
+      <input type="radio" id="a1" name="15" value="Anom and Note" required>
+      <label for="a1">I would like to remain anonymous and leave a note</label><br>
+      <input type="radio" id="a2" name="15" value="Anom" required>
+      <label for="a2">I would like to remain anonymous only</label><br>
+      <input type="radio" id="a3" name="15" value="Vis and Note" required>
+      <label for="a3">I want the recipient to know who I am and I want to leave a note</label><br>
+      <input type="radio" id="a4" name="15" value="Vis" required>
+      <label for="a4">I want the recipient to know who I am only</label><br>
+      <p>Question 16: If you wanted to leave a note, please type it here.</p>
+      <textarea type="text" name="16" rows="3" cols="75" 
+        maxlength="50" placeholder="Type N/A if you don't want to leave a note" required></textarea><br>
+      <p>Question 17: Anything else you want us to know?</p>
+      <textarea type="text" name="17" rows="3" cols="75" 
+        maxlength="50" placeholder="Ex: any food allergies we should be aware of!" 
+        required></textarea><br>
+      <input type="submit" id="submitBtn" class="transaction_button" value="Submit" />
+      <input type="hidden" id="operation" value="{{id}}"/>
+    </form>
+  </div>
+</div>
+{% endblock %}
