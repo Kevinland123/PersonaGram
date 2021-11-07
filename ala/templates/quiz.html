@@ -1,4 +1,4 @@
-{% extends "base_no_nav.html" %}
+{% extends "base.html" %}
 {% block content %}
 <div class="quiz">
   <div class="quizIntroTitle">
@@ -22,12 +22,15 @@
       <label for="a3">I want the recipient to know who I am and I want to leave a note</label><br>
       <input type="radio" id="a4" name="15" value="Vis" required>
       <label for="a4">I want the recipient to know who I am only</label><br>
-      <p>Question 16: Anything else you want us to know?</p>
+      <p>Question 16: If you wanted to leave a note, please type it here.</p>
       <textarea type="text" name="16" rows="3" cols="75" 
-        placeholder="If you wanted to leave a note or any food allergies we should be aware of!" 
+        maxlength="50" placeholder="Type N/A if you don't want to leave a note" required></textarea><br>
+      <p>Question 17: Anything else you want us to know?</p>
+      <textarea type="text" name="17" rows="3" cols="75" 
+        maxlength="50" placeholder="Ex: any food allergies we should be aware of!" 
         required></textarea><br>
-      <input type="submit" value="Submit Quiz"/>
-      <input type="hidden" name="operation" value="quiz"/>
+      <input type="submit" id="submitBtn" class="transaction_button" value="Submit" />
+      <input type="hidden" id="operation" value="{{id}}"/>
     </form>
   </div>
 </div>

@@ -36,6 +36,7 @@ CREATE TABLE answers(
   answer13  varchar(50) NOT NULL,
   answer14  varchar(50) NOT NULL,
   answer15  varchar(50) NOT NULL,
-  answer16   varchar(50) NOT NULL,
+  answer16  varchar(50) NOT NULL,
+  answer17  varchar(50) NOT NULL,
   FOREIGN KEY(ID) REFERENCES users(ID)
 );

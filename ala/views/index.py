@@ -26,9 +26,11 @@ mail.init_app(ala.app)
 
 stripe_keys = {
     # "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
-    "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
+    # "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
+    # "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
     # "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+    'secret_key': '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',
+    'publishable_key': 'pk_live_51JjS6DCN8bi5qyoSAOd4W3XeMS7AmtImSaAV1zuux8jnHKIDulEO1M5qC1aWpZ8IDJ3UDya2BpAREvRzh80DtI3j00N9TV8MVD'
 }
 
 stripe.api_key = stripe_keys["secret_key"]
@@ -57,7 +59,7 @@ def show_faq():
                                                             would for our own friends.'''],
         ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the Ann Arbor vicinity, and we will send an email 
                                                             confirming our delivery date to the sender 1-2 days prior.'''],
-        ['When will the box be available for pickup?',   '''We will have a few pickup dates on campus, date and time TBD via email to the reciever.'''],
+        ['When will the box be available for pickup?',   '''We will have a few pickup dates on campus, date and time TBD via email to the giftee.'''],
         ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''],
         ['How affordable are the boxes?',                '''The boxes are very affordable! You will spend $10 on a gift box
                                                             that is worth a lot more than its price!'''],
@@ -225,6 +227,7 @@ def show_quiz(id):
         q14 = flask.request.form['14']
         q15 = flask.request.form['15']
         q16 = flask.request.form['16']
+        q17 = flask.request.form['17']
 
         check = {
             'q1': q1,
@@ -243,38 +246,39 @@ def show_quiz(id):
             'q14': q14,
             'q15': q15,
             'q16': q16,
+            'q17': q17,
         }
 
         print(check)
-        connection = ala.model.get_db()
 
         # Cool SQL
         # For future, if answer already exist then update the answer instead
+        connection = ala.model.get_db()
         connection.execute(
             "INSERT INTO "
-            "answers (ID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16)"
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
-            (userid['ID'],q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16)
+            "answers (ID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17)"
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            (userid['ID'],q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,)
         )
 
         # Redirect
         return redirect(flask.url_for('show_quiz_success', id=id))
 
     questions = [
-        [0, "What's the receiver's favorite color?"],
-        [1, "What is the receiver's ideal vacation?"],
+        [0, "What's the giftee's favorite color?"],
+        [1, "What is the giftee's ideal vacation?"],
         [2, "Which of the following best describe your giftee?"],
         [3, "It's finals season. The recipient doesn't have time to cook food so they grab something quick to eat. What would they grab to eat?"],
-        [4, "What environment suits the receiver the most?"],
-        [5, "What best describes the receiver's fashion sense?"],
-        [6, "What kind of student is the receiver?"],
+        [4, "What environment suits the giftee the most?"],
+        [5, "What best describes the giftee's fashion sense?"],
+        [6, "What kind of student is the giftee?"],
         [7, "Where is their favorite place to study?"],
         [8, "If your giftee was living in a movie, what genre would it be?"],
         [9, "Your giftee is on AUX. What genre is playing right now?"],
-        [10, "You're traveling through an enchanted forest and come across four potions. Which one do you give to your receiver?"],
+        [10, "You're traveling through an enchanted forest and come across four potions. Which one do you give to your giftee?"],
         [11, "What is your giftee's love language?"],
-        [12, "What is the receiver's favorite holiday?"],
-        [13, "How is your receiver spending their free time?"]
+        [12, "What is the giftee's favorite holiday?"],
+        [13, "How is your giftee spending their free time?"]
     ]
     answers = [
         ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
@@ -294,7 +298,8 @@ def show_quiz(id):
     ]
 
     context = { 'questions': questions,
-                'answers': answers }
+                'answers': answers,
+                'id': id }
     return render_template("quiz.html", **context)
 
 
@@ -332,31 +337,74 @@ def create_checkout_session(id):
     domain_url = "http://localhost:8000/"
     stripe.api_key = stripe_keys["secret_key"]
 
-    try:
-        # Create new Checkout Session for the order
-        # Other optional params include:
-        # [billing_address_collection] - to display billing address details on the page
-        # [customer_email] - prefill the email input in the form
-        # For full details see https://stripe.com/docs/api/checkout/sessions/create
+    # Check
+    connection = ala.model.get_db()
+    cur = connection.execute(
+        "SELECT * "
+        "FROM users "
+        "WHERE exid = ?", (id, )
+    )
+    user = cur.fetchall()
+    print(user)
+    if len(user) == 0:
+        print("Error: Invalid exid")
+        return redirect(flask.url_for('show_index'))
 
-        # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-        checkout_session = stripe.checkout.Session.create(
-            success_url=domain_url + "success/" + id + "/?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url=domain_url + "quiz/success/" + id,
-            payment_method_types=["card"],
-            mode="payment",
-            line_items=[
-                {
-                    "name": "$10 Mystery Box",
-                    "quantity": 1,
-                    "currency": "usd",
-                    "amount": "1000",
-                }
-            ]
-        )
-        return flask.jsonify({"sessionId": checkout_session["id"]})
-    except Exception as e:
-        return flask.jsonify(error=str(e)), 403
+    if user[0]['method'] == 'pickup':
+        print("trying pickup")
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + "success/" + id + "/?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url=domain_url + "quiz/success/" + id,
+                payment_method_types=["card"],
+                mode="payment",
+                line_items=[
+                    {
+                        "name": "Mystery Gift Box",
+                        "quantity": 1,
+                        "currency": "usd",
+                        "amount": "1000",
+                    }
+                ]
+            )
+            return flask.jsonify({"sessionId": checkout_session["id"]})
+        except Exception as e:
+            return flask.jsonify(error=str(e)), 403
+    else:
+        print("trying deliver")
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + "success/" + id + "/?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url=domain_url + "quiz/success/" + id,
+                payment_method_types=["card"],
+                mode="payment",
+                shipping_rates=["shr_1JtKRvCN8bi5qyoSZ1iHHbQa"],
+                line_items=[
+                    {
+                        "name": "Mystery Gift Box",
+                        "quantity": 1,
+                        "currency": "usd",
+                        "amount": "1000",
+                    }
+                ]
+            )
+            return flask.jsonify({"sessionId": checkout_session["id"]})
+        except Exception as e:
+            return flask.jsonify(error=str(e)), 403
 
 
 @ala.app.route("/success/<id>/", methods=['GET'])
