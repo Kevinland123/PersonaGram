@@ -91,7 +91,6 @@ def contact():
         contact_phone = flask.request.form['phone']
         contact_message = flask.request.form['message']
 
-
         body = """
         From: %s <%s> <%s>
 

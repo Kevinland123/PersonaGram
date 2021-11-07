@@ -1,6 +1,6 @@
 @font-face{
-    font-family: Nimbus;
-    src: url('NimbusSans-Light.ttf');
+  font-family: Nimbus;
+  src: url('NimbusSans-Light.ttf');
 }
 
 html,body
@@ -44,7 +44,6 @@ html,body
 .headerRight {
   float: right;
   font-weight: 700;
-}
 
 .headerRight a {
   display: inline-block;
@@ -349,43 +348,43 @@ a {
 
 /* Contact Page */
 .contact_form {
-  margin-left: auto;
-  margin-right: auto;
+margin-left: auto;
+margin-right: auto;
 }
 
 .contact_submit {
-  width: 15%;
-  background-color: #1562D1;
-  color: white;
-  margin-top: 10px;
+width: 15%;
+background-color: #1562D1;
+color: white;
+margin-top: 10px;
 }
 
 .contact_input {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+display: flex;
+flex-direction: column;
+margin-top: 20px;
+margin-bottom: 20px;
+margin-left: auto;
+margin-right: auto;
+width: 40%;
 }
 
 input {
-  margin-bottom: 8px;
+margin-bottom: 8px;
 }
 
 .contact {
-  text-align: center;
-  font-family: 'ABeeZee';
+text-align: center;
+font-family: 'ABeeZee';
 }
 
 .contact_bold {
-  font-size: 48px;
-  margin-bottom: 0.5em;
+font-size: 48px;
+margin-bottom: 0.5em;
 }
 
 .contact_text {
-  font-size: 24px;
+font-size: 24px;
 }
 
 /* Admin Page */
@@ -402,16 +401,16 @@ input {
 
 /* About Page */
 .about {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+display: flex;
+align-items: center;
+flex-direction: column;
 
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+max-width: 900px;
+margin-left: auto;
+margin-right: auto;
 
-  font-size: 20px;
-  text-align: center;
+font-size: 20px;
+text-align: center;
 }
 
 .about_big {
