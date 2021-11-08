@@ -7,6 +7,7 @@ fetch("/config")
 .then((data) => {
   // Initialize Stripe.js
   const stripe = Stripe(data.publicKey);
+  console.log("stripe initialized")
 
   // Event handler
   document.querySelector("#submitBtn").addEventListener("click", () => {
