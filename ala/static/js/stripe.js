@@ -11,6 +11,25 @@ fetch("/config")
   // Event handler
   document.querySelector("#submitBtn").addEventListener("click", () => {
     const id = document.querySelector("#submitBtn").value;
+    console.log("clicked")
+    console.log(id)
+    
+    // Get Checkout Session ID
+    fetch("/create-checkout-session/" + id)
+    .then((result) => { return result.json(); })
+    .then((data) => {
+      console.log(data);
+      // Redirect to Stripe Checkout
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    })
+    .then((res) => {
+      console.log(res);
+    });
+  });
+
+  document.querySelector("#submitBtn").addEventListener("touchstart", () => {
+    const id = document.querySelector("#submitBtn").value;
+    console.log("touchstart")
     console.log(id)
     
     // Get Checkout Session ID
