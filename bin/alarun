@@ -6,7 +6,7 @@
 set -Eeuo pipefail
 
 # Create
-if [ ! -e var/ala.sqlite3 ]; then
+if ! psql -lqt | grep -q ala; then
   ./bin/aladb create
 fi
 

@@ -22,6 +22,7 @@ setup(
         'pytest',
         'pytest-mock',
         'requests',
+        'psycopg2-binary',
     ],
     python_requires='>=3.6',
 )

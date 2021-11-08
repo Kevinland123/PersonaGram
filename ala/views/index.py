@@ -7,6 +7,7 @@ from flask import render_template, redirect
 import ala
 import uuid
 import stripe
+import json
 from flask_mail import Message, Mail
 
 
@@ -26,11 +27,11 @@ mail.init_app(ala.app)
 
 stripe_keys = {
     # "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    # "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
-    # "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
+    "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
+    "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
     # "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-    'secret_key': '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',
-    'publishable_key': 'pk_live_51JjS6DCN8bi5qyoSAOd4W3XeMS7AmtImSaAV1zuux8jnHKIDulEO1M5qC1aWpZ8IDJ3UDya2BpAREvRzh80DtI3j00N9TV8MVD'
+    #'secret_key': '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',
+    #'publishable_key': 'pk_live_51JjS6DCN8bi5qyoSAOd4W3XeMS7AmtImSaAV1zuux8jnHKIDulEO1M5qC1aWpZ8IDJ3UDya2BpAREvRzh80DtI3j00N9TV8MVD'
 }
 
 stripe.api_key = stripe_keys["secret_key"]
@@ -57,7 +58,7 @@ def show_faq():
         ['What’s inside each box?',                      '''It can contain anything from snacks to trinkets to discount codes; anything
                                                             that we think your friend might like! We will arrange the box just like we
                                                             would for our own friends.'''],
-        ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the Ann Arbor vicinity, and we will send an email 
+        ['How does PersonaGram’s delivery system work?', '''We will hand-deliver the box to the Ann Arbor vicinity, and we will send an email
                                                             confirming our delivery date to the sender 1-2 days prior.'''],
         ['When will the box be available for pickup?',   '''We will have a few pickup dates on campus, date and time TBD via email to the giftee.'''],
         ['How can we contact you?',                      '''For any inquiries, email us at info.personagram@gmail.com!'''],
@@ -102,7 +103,7 @@ def contact():
                       recipients=['info.personagram@gmail.com'],
                       body=body)
         mail.send(msg)
-        
+
         return render_template("contact.html", success=True)
 
     return render_template("contact.html")
@@ -111,13 +112,13 @@ def contact():
 @ala.app.route('/admin/adminPageForKevinToLookAtOnly/', methods=['GET'])
 def admin():
     """Admin page."""
-    connection = ala.model.get_db()
-    cur = connection.execute(
+    cur = ala.model.get_db()
+    cur.execute(
         "SELECT * "
         "FROM users "
     )
     users = cur.fetchall()
-    cur = connection.execute(
+    cur.execute(
         "SELECT * "
         "FROM answers "
     )
@@ -128,7 +129,8 @@ def admin():
         'answers': answers
     }
 
-    print(context)
+    print("test")
+    print(users[0])
 
     return render_template("admin.html", **context)
 
@@ -171,14 +173,13 @@ def show_quiz_info():
             'method': method,
             'paid': 0
         }
-        print(context)
 
         # Create new SQL entry and get the ID
-        connection = ala.model.get_db()
-        connection.execute(
+        cur = ala.model.get_db()
+        cur.execute(
             "INSERT INTO "
             "users (exid, senderName, senderEmail, senderPhone, receiverName, receiverEmail, receiverPhone, street, city, zipcode, method)"
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ",
             (exid, sender_name,sender_email,sender_number, recipient_name, recipient_email, recipient_number, street, city, zipcode, method,)
         )
 
@@ -191,11 +192,11 @@ def show_quiz_info():
 def show_quiz(id):
     """Display / route."""
     # check if session uuid is in database, else go back to home page
-    connection = ala.model.get_db()
-    cur = connection.execute(
+    cur = ala.model.get_db()
+    cur.execute(
         "SELECT * "
         "FROM users "
-        "WHERE exid = ?", (id, )
+        "WHERE exid = %s", (id, )
     )
     user = cur.fetchall()
     if len(user) == 0:
@@ -203,16 +204,13 @@ def show_quiz(id):
         return redirect(flask.url_for('show_index'))
 
     if flask.request.method == 'POST':
-        cur = connection.execute(
+        cur.execute(
             "SELECT id "
             "FROM users "
-            "WHERE exid = ?", (id, )
+            "WHERE exid = %s", (id, )
         )
 
-        userid = cur.fetchone()
-        print(userid)
-        print(userid['ID'])
-
+        userid = cur.fetchall()
 
         q1 = flask.request.form['1']
         q2 = flask.request.form['2']
@@ -252,16 +250,18 @@ def show_quiz(id):
             'q17': q17,
         }
 
-        print(check)
-
+    #    print(check)
+        answers_id = userid[0]['id']
+        print("wtf")
+        print(answers_id)
         # Cool SQL
         # For future, if answer already exist then update the answer instead
-        connection = ala.model.get_db()
-        connection.execute(
+        cur = ala.model.get_db()
+        cur.execute(
             "INSERT INTO "
             "answers (ID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17)"
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ",
-            (userid['ID'],q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,)
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ",
+            (answers_id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,)
         )
 
         # Redirect
@@ -310,11 +310,11 @@ def show_quiz(id):
 def show_quiz_success(id):
     """Display / route"""
     # Check
-    connection = ala.model.get_db()
-    cur = connection.execute(
+    cur = ala.model.get_db()
+    cur.execute(
         "SELECT * "
         "FROM users "
-        "WHERE exid = ?", (id, )
+        "WHERE exid = %s", (id, )
     )
     user = cur.fetchall()
     if len(user) == 0:
@@ -341,14 +341,14 @@ def create_checkout_session(id):
     stripe.api_key = stripe_keys["secret_key"]
 
     # Check
-    connection = ala.model.get_db()
-    cur = connection.execute(
+    cur = ala.model.get_db()
+    cur.execute(
         "SELECT * "
         "FROM users "
-        "WHERE exid = ?", (id, )
+        "WHERE exid = %s", (id, )
     )
     user = cur.fetchall()
-    print(user)
+#    print(user)
     if len(user) == 0:
         print("Error: Invalid exid")
         return redirect(flask.url_for('show_index'))
@@ -413,22 +413,22 @@ def create_checkout_session(id):
 @ala.app.route("/success/<id>/", methods=['GET'])
 def success(id):
     # Check if user exist
-    connection = ala.model.get_db()
-    cur = connection.execute(
+    cur = ala.model.get_db()
+    cur.execute(
         "SELECT * "
         "FROM users "
-        "WHERE exid = ?", (id, )
+        "WHERE exid = %s", (id, )
     )
     user = cur.fetchall()
     if len(user) == 0:
         print("Error: Invalid exid")
         return redirect(flask.url_for('show_index'))
-    
+
     # Update paid
-    connection.execute(
+    cur.execute(
         "UPDATE users "
-        "SET paid = ? "
-        "WHERE exid = ?", (1, id, )
+        "SET paid = %s "
+        "WHERE exid = %s", (1, id, )
     )
-    
+
     return render_template("payment_success.html")
