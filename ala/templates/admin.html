@@ -4,10 +4,10 @@
 <p class="admin_title">Users</p>
 {% for user in users %}
 <div class="admin_box">
-  <p><b>ID:</b> {{user['ID']}}</p>
+  <p><b>ID:</b> {{user['id']}}</p>
   <p><b>EXID:</b> {{user['exid']}}</p>
-  <p><b>Sender Information:</b> {{user['senderName']}} | {{user['senderEmail']}} | {{user['senderPhone']}}</p>
-  <p><b>Recipient Information:</b> {{user['receiverName']}} | {{user['receiverEmail']}} | {{user['receiverPhone']}}</p>
+  <p><b>Sender Information:</b> {{user['sendername']}} | {{user['senderemail']}} | {{user['senderphone']}}</p>
+  <p><b>Recipient Information:</b> {{user['receivername']}} | {{user['receiveremail']}} | {{user['receiverphone']}}</p>
   <p><b>Shipping Info:</b> {{user['street']}} | {{user['city']}} | {{user['zipcode']}}</p>
   <p><b>Method:</b> {{user['method']}}</p>
   <p><b>Paid:</b> {% if user['paid'] == 0 %} Unpaid {% else %} Paid {% endif %}</p>
@@ -17,7 +17,7 @@
 <p class="admin_title">Answers</p>
 {% for answer in answers %}
 <div class="admin_box">
-  <p><b>ID:</b> {{answer['ID']}}</p>
+  <p><b>ID:</b> {{answer['id']}}</p>
   <p><b>Answer 1:</b> {{answer['answer1']}}</p>
   <p><b>Answer 2:</b> {{answer['answer2']}}</p>
   <p><b>Answer 3:</b> {{answer['answer3']}}</p>
