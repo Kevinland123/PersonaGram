@@ -1,7 +1,5 @@
-PRAGMA foreign_keys = ON;
-
 CREATE TABLE users(
-  ID            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  ID            SERIAL PRIMARY KEY,
   exid          varchar(100)NOT NULL,
   senderName    varchar(40) NOT NULL,
   senderEmail   varchar(50) NOT NULL,
@@ -13,14 +11,14 @@ CREATE TABLE users(
   city          varchar(30),
   zipcode       INTEGER NOT NULL,
   method        varchar(10) NOT NULL,
-  created       datetime default current_timestamp,
+  created       TIMESTAMP default current_timestamp,
   paid          INTEGER default 0
   -- 0 is false, 1 is true
 );
 
 
 CREATE TABLE answers(
-  ID        INTEGER     NOT NULL,
+  ID        INTEGER PRIMARY KEY,
   answer1   varchar(50) NOT NULL,
   answer2   varchar(50) NOT NULL,
   answer3   varchar(50) NOT NULL,
