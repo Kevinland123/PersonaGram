@@ -337,7 +337,7 @@ def get_publishable_key():
 
 @ala.app.route("/create-checkout-session/<id>/")
 def create_checkout_session(id):
-    domain_url = "www.personagram.info"
+    domain_url = "http://www.personagram.info/"
     stripe.api_key = stripe_keys["secret_key"]
 
     # Check
