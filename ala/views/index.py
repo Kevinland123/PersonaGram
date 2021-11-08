@@ -7,6 +7,7 @@ from flask import render_template, redirect
 import ala
 import uuid
 import stripe
+import json
 from flask_mail import Message, Mail
 
 
@@ -169,7 +170,6 @@ def show_quiz_info():
             'method': method,
             'paid': 0
         }
-        print(context)
 
         # Create new SQL entry and get the ID
         cur = ala.model.get_db()
@@ -207,9 +207,7 @@ def show_quiz(id):
             "WHERE exid = %s", (id, )
         )
 
-        userid = cur.fetchone()
-        print("hello")
-        print(userid)
+        userid = cur.fetchall()
 
         q1 = flask.request.form['1']
         q2 = flask.request.form['2']
@@ -250,7 +248,9 @@ def show_quiz(id):
         }
 
     #    print(check)
-
+        answers_id = userid[0]['id']
+        print("wtf")
+        print(answers_id)
         # Cool SQL
         # For future, if answer already exist then update the answer instead
         cur = ala.model.get_db()
@@ -258,7 +258,7 @@ def show_quiz(id):
             "INSERT INTO "
             "answers (ID, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17)"
             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ",
-            (userid['ID'],q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,)
+            (answers_id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,)
         )
 
         # Redirect
