@@ -6,9 +6,9 @@
 set -Eeuo pipefail
 
 # Create
-if ! psql -lqt | grep -q ala; then
-  ./bin/aladb create
-fi
+# if ! psql -lqt | grep -q ala; then
+#   ./bin/aladb create
+# fi
 
 set -x
 export FLASK_ENV=development

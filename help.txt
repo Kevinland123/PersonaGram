@@ -15,6 +15,27 @@ ec2-18-117-229-248.us-east-2.compute.amazonaws.com
 ssh -i personagram.pem ubuntu@ec2-18-117-229-248.us-east-2.compute.amazonaws.com 
 
 
+# Database Endpoint
+ala-personagram.ctj3mfrzha94.us-east-2.rds.amazonaws.com
+password: biZljqpi5XXgeb1YCZZP
+
+
+# Test Database
+export RDSHOST=ala-personagram.ctj3mfrzha94.us-east-2.rds.amazonaws.com
+export PGPASSWORD=biZljqpi5XXgeb1YCZZP
+nslookup $RDSHOST
+nc -v -z $RDSHOST 5432                                                                # test connection
+psql -U postgres -h $RDSHOST -d template1 -c 'SELECT usename FROM pg_user'            # test if user exist
+psql -U postgres -h $RDSHOST -d template1 -c 'CREATE DATABASE personagram'            # create DB
+psql -U postgres -h $RDSHOST -d template1                                             # create another user
+  CREATE USER personagram WITH PASSWORD 'pass';
+  GRANT ALL PRIVILEGES ON DATABASE personagram TO personagram;
+export PGPASSWORD=pass                                                                # initialize schema
+psql -U personagram -h $RDSHOST -d personagram -a -v ON_ERROR_STOP=1 -f sql/schema.sql
+psql -U postgres -h $RDSHOST -d personagram -c '\dt'
+
+
+
 # For future
 1. login for admin page
 2. kill the intermediate page

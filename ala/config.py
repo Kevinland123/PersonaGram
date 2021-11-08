@@ -17,8 +17,8 @@ MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 # Database file is var/ala.sqlite3
 DATABASE_FILENAME = ALA_ROOT/'var'/'ala.sqlite3'
 
-POSTGRESQL_DATABASE_HOST = "localhost"
+POSTGRESQL_DATABASE_HOST = "ala-personagram.ctj3mfrzha94.us-east-2.rds.amazonaws.com"
 POSTGRESQL_DATABASE_PORT = 5432
-POSTGRESQL_DATABASE_USER = "mairachlevskyreich" # OS or WSL username
-POSTGRESQL_DATABASE_PASSWORD = None
-POSTGRESQL_DATABASE_DB = "ala"
+POSTGRESQL_DATABASE_USER = "personagram"
+POSTGRESQL_DATABASE_PASSWORD = "biZljqpi5XXgeb1YCZZP"
+POSTGRESQL_DATABASE_DB = "personagram"
