@@ -128,6 +128,8 @@ def admin():
         'answers': answers
     }
 
+    print(context)
+
     return render_template("admin.html", **context)
 
 
@@ -208,7 +210,9 @@ def show_quiz(id):
         )
 
         userid = cur.fetchone()
+        print(userid)
         print(userid['ID'])
+
 
         q1 = flask.request.form['1']
         q2 = flask.request.form['2']
