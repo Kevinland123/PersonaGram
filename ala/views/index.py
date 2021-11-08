@@ -27,11 +27,11 @@ mail.init_app(ala.app)
 
 stripe_keys = {
     # "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
-    "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
+    # "secret_key": 'sk_test_51JjS6DCN8bi5qyoSGcf9Qtqv8tDkr5HsGsworONzNjzdoelRhue5PDEMD6wjFhed6jHz7hjfn5BFiaGGLYIcOn5F00bexWmF63',
+    # "publishable_key": 'pk_test_51JjS6DCN8bi5qyoSHSPzD0Lc33W1OtQ1sWPrPE6VBh62hISfqJAYbrVJw5c4CisU7JM3Y8ZcKePoHkIkLPPOsS7F00wKVSSlSg'
     # "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-    #'secret_key': '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',
-    #'publishable_key': 'pk_live_51JjS6DCN8bi5qyoSAOd4W3XeMS7AmtImSaAV1zuux8jnHKIDulEO1M5qC1aWpZ8IDJ3UDya2BpAREvRzh80DtI3j00N9TV8MVD'
+    'secret_key': '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',
+    'publishable_key': 'pk_live_51JjS6DCN8bi5qyoSAOd4W3XeMS7AmtImSaAV1zuux8jnHKIDulEO1M5qC1aWpZ8IDJ3UDya2BpAREvRzh80DtI3j00N9TV8MVD'
 }
 
 stripe.api_key = stripe_keys["secret_key"]
