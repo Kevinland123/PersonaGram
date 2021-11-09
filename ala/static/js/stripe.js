@@ -6,7 +6,7 @@ fetch("/config")
 .then((result) => { 
   console.log("result back")
   return result.json(); 
-}).then(function(data) {
+}).then((data) => {
   // Initialize Stripe.js
   const stripe = Stripe(data.publicKey);
   console.log("stripe initialized")
