@@ -356,7 +356,7 @@ def create_checkout_session(id):
         "WHERE exid = %s", (id, )
     )
     user = cur.fetchall()
-#    print(user)
+#   print(user)
     if len(user) == 0:
         print("Error: Invalid exid")
         return redirect(flask.url_for('show_index'))

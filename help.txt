@@ -23,15 +23,15 @@ password: biZljqpi5XXgeb1YCZZP
 # Test Database
 export RDSHOST=ala-personagram.ctj3mfrzha94.us-east-2.rds.amazonaws.com
 export PGPASSWORD=biZljqpi5XXgeb1YCZZP
-nslookup $RDSHOST
-nc -v -z $RDSHOST 5432                                                                # test connection
-psql -U postgres -h $RDSHOST -d template1 -c 'SELECT usename FROM pg_user'            # test if user exist
-psql -U postgres -h $RDSHOST -d template1 -c 'CREATE DATABASE personagram'            # create DB
-psql -U postgres -h $RDSHOST -d template1                                             # create another user
+nslookup $RDSHOST 
+nc -v -z $RDSHOST 5432                                                                  # test connection
+psql -U postgres -h $RDSHOST -d template1 -c 'SELECT usename FROM pg_user'              # test if user exist
+psql -U postgres -h $RDSHOST -d template1 -c 'CREATE DATABASE personagram'              # create DB
+psql -U postgres -h $RDSHOST -d template1                                               # create another user
   CREATE USER personagram WITH PASSWORD 'pass';
   GRANT ALL PRIVILEGES ON DATABASE personagram TO personagram;
-export PGPASSWORD=pass                                                                # initialize schema
-psql -U personagram -h $RDSHOST -d personagram -a -v ON_ERROR_STOP=1 -f sql/schema.sql
+export PGPASSWORD=pass                                                                
+psql -U personagram -h $RDSHOST -d personagram -a -v ON_ERROR_STOP=1 -f sql/schema.sql  # initialize schema
 psql -U postgres -h $RDSHOST -d personagram -c '\dt'
 
 
