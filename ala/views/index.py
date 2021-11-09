@@ -403,7 +403,7 @@ def create_checkout_session(id):
                 cancel_url=domain_url + "quiz/success/" + id,
                 payment_method_types=["card"],
                 mode="payment",
-                shipping_rates=["shr_1JtKRvCN8bi5qyoSZ1iHHbQa"],
+                shipping_rates=["shr_1JtKW6CN8bi5qyoSMfOwfKzF"],
                 line_items=[
                     {
                         "name": "Mystery Gift Box",
