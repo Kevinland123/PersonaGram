@@ -1,2 +1,3 @@
-# ala223-umich
-Website for PersonaGram
+# PersonaGram
+Project for ala223-umich
+Instagra: https://www.instagram.com/personagramumich/
